@@ -1,15 +1,11 @@
 import { useEffect, useState } from 'react';
 
-interface Coords {
-  latitude: number;
-  longitude: number;
-}
-
-export const useLocation = (): Coords => {
+export const useGeoLocation = () => {
   const [coords, setCoords] = useState({
-    latitude: 21.280693,
-    longitude: -157.834549,
+    latitude: null,
+    longitude: null,
   });
+  const [locationLoading, setLocationLoading] = useState(false);
 
   const onSuccess = (pos: any) => {
     const crd = pos.coords;
@@ -17,13 +13,15 @@ export const useLocation = (): Coords => {
       latitude: crd.latitude,
       longitude: crd.longitude,
     });
+    setLocationLoading(false);
   };
 
   useEffect(() => {
+    setLocationLoading(true);
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(onSuccess);
     }
   }, []);
 
-  return coords;
+  return { latitude: coords.latitude, longitude: coords.longitude, locationLoading };
 };
