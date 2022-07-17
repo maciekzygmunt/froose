@@ -14,9 +14,11 @@ const SearchBar = () => {
 
   const submitHandler = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    const coords = await nameToCoords(inputValue);
-    router.push(`/${coords?.latitude}/${coords?.longitude}`);
-    setInputValue('');
+    if (inputValue) {
+      const coords = await nameToCoords(inputValue);
+      router.push(`/${coords?.latitude}/${coords?.longitude}`);
+      setInputValue('');
+    }
   };
 
   const locationHandler = async () => {
@@ -29,14 +31,14 @@ const SearchBar = () => {
 
   return (
     <form onSubmit={submitHandler}>
-      <div className="flex items-center m-4 relative shadow-md md:max-w-lg md:mx-auto">
+      <div className="flex items-center m-4 relative drop-shadow-md md:max-w-3xl md:mx-auto">
         <AiOutlineSearch className="w-6 h-6 absolute pointer-events-none text-slate-600 left-2" />
         <input
           ref={inputRef}
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          className="rounded w-full h-12 pl-10  border border-slate-300 placeholder:italic placeholder:font-medium outline-none focus:ring-2 focus:ring-slate-600 focus:shadow-xl transition-all ease-out duration-150"
+          className="rounded-lg w-full h-12 pl-10  border border-slate-300 placeholder:italic placeholder:font-medium outline-none focus:ring-2 focus:ring-slate-600 focus:shadow-xl transition-all ease-out duration-150"
           placeholder="Search..."
         />
         {loading && (

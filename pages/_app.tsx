@@ -4,10 +4,10 @@ import SearchBar from '../components/SearchBar';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <div className="antialiased">
       <SearchBar />
       <Component {...pageProps} />
-    </>
+    </div>
   );
 }
 
