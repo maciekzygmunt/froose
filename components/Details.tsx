@@ -2,8 +2,14 @@ import HourlyItem from './HourlyItem';
 import gsap from 'gsap';
 import { useEffect, useRef } from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
+import DailyItem from './DailyItem';
 
-const Details = ({ weather1h }: any) => {
+interface DetailsProps {
+  weather1h: any;
+  weather1d: any;
+}
+
+const Details = ({ weather1h, weather1d }: DetailsProps) => {
   const hourly = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -15,18 +21,32 @@ const Details = ({ weather1h }: any) => {
   }
 
   return (
-    <div ref={hourly} className="bg-white/50 backdrop-blur-lg rounded-lg p-4">
-      <div className="text-slate-700 font-medium select-none">Hourly forecast</div>
-      <ScrollContainer
-        className="flex cursor-grab"
-        draggingClassName="cursor-grabbing"
-        nativeMobileScroll={true}
-      >
-        {weather1h.map((e: any, i: number) => (
-          <HourlyItem key={i} hourlyObject={e} />
-        ))}
-      </ScrollContainer>
-    </div>
+    <>
+      <div ref={hourly} className="bg-white/50 backdrop-blur-lg rounded-lg p-4">
+        <div className="text-slate-700 font-medium select-none">Hourly forecast</div>
+        <ScrollContainer
+          className="flex cursor-grab"
+          draggingClassName="cursor-grabbing"
+          nativeMobileScroll={true}
+        >
+          {weather1h.map((e: any, i: number) => (
+            <HourlyItem key={i} hourlyObject={e} />
+          ))}
+        </ScrollContainer>
+      </div>
+      <div className="bg-white/50 backdrop-blur-lg rounded-lg p-4 mt-4">
+        <div className="text-slate-700 font-medium select-none">Daily forecast</div>
+        <ScrollContainer
+          className="flex cursor-grab"
+          draggingClassName="cursor-grabbing"
+          nativeMobileScroll={true}
+        >
+          {weather1d.map((e: any, i: number) => (
+            <DailyItem dailyObject={e} key={i} />
+          ))}
+        </ScrollContainer>
+      </div>
+    </>
   );
 };
 export default Details;
