@@ -10,7 +10,6 @@ import LightSnow from '../icons/animated/snowy-4.svg';
 import Snow from '../icons/animated/snowy-5.svg';
 import HeavySnow from '../icons/animated/snowy-6.svg';
 import Thunder from '../icons/animated/thunder.svg';
-
 interface WeatherIconProps {
   code: number;
   time: number;
@@ -45,6 +44,7 @@ const WeatherIcon = ({ code, time }: WeatherIconProps) => {
   } else if (code === 5101 || code === 7101) {
     icon = <HeavySnow className="w-7 h-7 overflow-visible" />;
   } else if (code === 8000) {
+    //TODO: fix thunder
     icon = <Thunder className="w-7 h-7 overflow-visible " />;
   }
 

@@ -1,20 +1,22 @@
 import { numberToWeekDay, isToday, numberToMonth } from '../utils/dates';
-import WeatherTitle from './WeatherTitle';
+import { codeToWeatherTitle } from '../utils/weatherCodes';
+import Marquee from 'react-fast-marquee';
 
 const DailyItem = ({ dailyObject }: any) => {
   const date = new Date(dailyObject.startTime);
+  const day = date.getDate();
   const month = numberToMonth(date.getMonth());
   const weekDay = numberToWeekDay(date.getDay());
-  const day = date.getDate();
 
+  //TODO: text sliding
   return (
-    <div className="m-2 select-none text-slate-900 flex flex-col items-center gap-y-2 first:ml-0 max-w-[60px]">
+    <div className="m-2 select-none text-slate-900 flex flex-col items-center gap-y-2 first:ml-0 ">
       <div>{isToday(date) ? 'Today' : weekDay}</div>
       <div className="whitespace-nowrap">
         {day} {month}
       </div>
-      <div className="whitespace-nowrap overflow-hidden max-w-[60px]">
-        <WeatherTitle code={dailyObject.values.weatherCodeFullDay} />
+      <div className="max-w-[60px] overflow-hidden whitespace-nowrap">
+        {codeToWeatherTitle(dailyObject.values.weatherCodeFullDay)}
       </div>
     </div>
   );

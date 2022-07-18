@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { useEffect, useRef } from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import DailyItem from './DailyItem';
+import DailyChart from './DailyChart';
 
 interface DetailsProps {
   weather1h: any;
@@ -36,14 +37,13 @@ const Details = ({ weather1h, weather1d }: DetailsProps) => {
       </div>
       <div className="bg-white/50 backdrop-blur-lg rounded-lg p-4 mt-4">
         <div className="text-slate-700 font-medium select-none">Daily forecast</div>
-        <ScrollContainer
-          className="flex cursor-grab"
-          draggingClassName="cursor-grabbing"
-          nativeMobileScroll={true}
-        >
-          {weather1d.map((e: any, i: number) => (
-            <DailyItem dailyObject={e} key={i} />
-          ))}
+        <ScrollContainer draggingClassName="cursor-grabbing" nativeMobileScroll={true}>
+          <div className="flex cursor-grab">
+            {weather1d.map((e: any, i: number) => (
+              <DailyItem dailyObject={e} key={i} />
+            ))}
+          </div>
+          <DailyChart weather1d={weather1d} />
         </ScrollContainer>
       </div>
     </>

@@ -1,11 +1,7 @@
-interface WeatherTitleProps {
-  code: number;
-}
-
-const WeatherTitle = ({ code }: WeatherTitleProps) => {
-  let title = <></>;
+export const codeToWeatherTitle = (code: number) => {
+  let title = '';
   if (code === 1000) {
-    title = <>Clear</>;
+    title = 'Clear';
   } else if (
     code === 1100 ||
     code === 2101 ||
@@ -27,7 +23,7 @@ const WeatherTitle = ({ code }: WeatherTitleProps) => {
     code === 7108 ||
     code === 7113
   ) {
-    title = <>Mostly Clear</>;
+    title = 'Mostly Clear';
   } else if (
     code === 1101 ||
     code === 1103 ||
@@ -48,7 +44,7 @@ const WeatherTitle = ({ code }: WeatherTitleProps) => {
     code === 7107 ||
     code === 7114
   ) {
-    title = <>Partly Cloudy</>;
+    title = 'Partly Cloudy';
   } else if (
     code === 1102 ||
     code === 2103 ||
@@ -68,13 +64,13 @@ const WeatherTitle = ({ code }: WeatherTitleProps) => {
     code === 7109 ||
     code === 7116
   ) {
-    title = <>Mostly Cloudy</>;
+    title = 'Mostly Cloudy';
   } else if (code === 1001) {
-    title = <>Cloudy</>;
+    title = 'Cloudy';
   } else if (code === 2100) {
-    title = <>Light Fog</>;
+    title = 'Light Fog';
   } else if (code === 2000) {
-    title = <>Fog</>;
+    title = 'Fog';
   } else if (
     code === 4000 ||
     code === 5122 ||
@@ -83,39 +79,38 @@ const WeatherTitle = ({ code }: WeatherTitleProps) => {
     code === 6212 ||
     code === 7105
   ) {
-    title = <>Drizzle</>;
+    title = 'Drizzle';
   } else if (code === 4200 || code === 6206 || code === 6220 || code === 7115) {
-    title = <>Light Rain</>;
+    title = 'Light Rain';
   } else if (code === 4001 || code === 5108 || code === 6222 || code === 7117) {
-    title = <>Rain</>;
+    title = 'Rain';
   } else if (code === 4201) {
-    title = <>Heavy Rain</>;
+    title = 'Heavy Rain';
   } else if (code === 5001) {
-    title = <>Flurries</>;
+    title = 'Flurries';
   } else if (code === 5100) {
-    title = <>Light Snows</>;
+    title = 'Light Snows';
   } else if (code === 5000 || code === 5114 || code === 5112) {
-    title = <>Snow</>;
+    title = 'Snow';
   } else if (code === 5101) {
-    title = <>Heavy Snow</>;
+    title = 'Heavy Snow';
   } else if (code === 6000) {
-    title = <>Freezing Drizzle</>;
+    title = 'Freezing Drizzle';
   } else if (code === 6200) {
-    title = <>Light Freezing Drizzle</>;
+    title = 'Light Freezing Drizzle';
   } else if (code === 6001 || code === 7106 || code === 7103) {
-    title = <>Freezing Rain</>;
+    title = 'Freezing Rain';
   } else if (code === 6201) {
-    title = <>Heavy Freezing Rain</>;
+    title = 'Heavy Freezing Rain';
   } else if (code === 7102) {
-    title = <>Light Ice Pellets</>;
+    title = 'Light Ice Pellets';
   } else if (code === 7000) {
-    title = <>Ice Pellets</>;
+    title = 'Ice Pellets';
   } else if (code === 7101) {
-    title = <>Heavy Ice Pellets</>;
+    title = 'Heavy Ice Pellets';
   } else if (code === 8000 || code === 8001 || code === 8003 || code === 8002) {
-    title = <>Thunderstorm</>;
+    title = 'Thunderstorm';
   }
 
   return title;
 };
-export default WeatherTitle;
