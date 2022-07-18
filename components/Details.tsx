@@ -43,7 +43,9 @@ const Details = ({ weather1h, weather1d }: DetailsProps) => {
               <DailyItem dailyObject={e} key={i} />
             ))}
           </div>
-          <DailyChart weather1d={weather1d} />
+          <div className="cursor-grab">
+            <DailyChart weather1d={weather1d} />
+          </div>
         </ScrollContainer>
       </div>
     </>

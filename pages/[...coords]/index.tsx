@@ -32,7 +32,7 @@ const Weather: NextPage = () => {
           className="text-9xl text-transparent
       bg-gradient-to-b from-white to-white/60 bg-clip-text font-medium relative"
         >
-          {Math.round(weather1h[0]?.values?.temperature * 2) / 2}
+          {Math.round(weather1h[0]?.values?.temperature)}
           <span className="text-3xl font-medium absolute top-1 text-white/90">°</span>
         </div>
       </div>

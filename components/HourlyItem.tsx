@@ -10,7 +10,7 @@ const HourlyItem = ({ hourlyObject }: any) => {
       <div>{hour}:00</div>
       <WeatherIcon code={hourlyObject.values.weatherCode} time={hour} />
       <div className="relative">
-        {Math.round(hourlyObject.values.temperature * 2) / 2}
+        {Math.round(hourlyObject.values.temperature)}
         <span className="text-sm absolute ">°</span>
       </div>
     </div>
