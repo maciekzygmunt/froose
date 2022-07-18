@@ -52,9 +52,10 @@ export const DailyChart = ({ weather1d }: any) => {
         anchor: 'end',
         font: {
           size: 16,
-          weight: 500,
+          weight: 400,
+          family: 'Poppins',
         },
-        align: 'end',
+        align: 290,
         offset: -6,
         formatter: function (value: string, context: Context) {
           return value + '°';
