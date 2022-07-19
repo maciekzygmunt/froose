@@ -1,7 +1,9 @@
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
+import DailyForecast from '../../components/DailyForecast';
 import Details from '../../components/Details';
+import HourlyForecast from '../../components/HourlyForecast';
 import { coordsToName } from '../../utils/coords';
 import useWeather from '../../utils/useWeather';
 import { codeToWeatherTitle } from '../../utils/weatherCodes';
@@ -36,7 +38,9 @@ const Weather: NextPage = () => {
           <span className="text-3xl font-medium absolute top-1 text-white/90">°</span>
         </div>
       </div>
-      <Details weather1h={weather1h} weather1d={weather1d} />
+      <HourlyForecast weather1h={weather1h} />
+      <DailyForecast weather1d={weather1d} />
+      <Details details={weather1h[0]} />
     </div>
   );
 };

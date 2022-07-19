@@ -4,51 +4,44 @@ import { useEffect, useRef } from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import DailyItem from './DailyItem';
 import DailyChart from './DailyChart';
+import Arrow from '../icons/arrow.svg';
 
-interface DetailsProps {
-  weather1h: any;
-  weather1d: any;
-}
-
-const Details = ({ weather1h, weather1d }: DetailsProps) => {
-  const hourly = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    gsap.fromTo(hourly.current, { y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 });
-  }, []);
-
-  if (weather1h?.length === 0) {
-    return <></>;
-  }
+const Details = ({ details }: any) => {
+  const rotateDeg = Math.round(details.values.windDirection);
+  console.log(rotateDeg);
+  //TODO: arrow rotation and grid
 
   return (
-    <>
-      <div ref={hourly} className="bg-white/50 backdrop-blur-lg rounded-lg p-4">
-        <div className="text-slate-700 font-medium select-none">Hourly forecast</div>
-        <ScrollContainer
-          className="flex cursor-grab"
-          draggingClassName="cursor-grabbing"
-          nativeMobileScroll={true}
-        >
-          {weather1h.map((e: any, i: number) => (
-            <HourlyItem key={i} hourlyObject={e} />
-          ))}
-        </ScrollContainer>
-      </div>
-      <div className="bg-white/50 backdrop-blur-lg rounded-lg p-4 mt-4">
-        <div className="text-slate-700 font-medium select-none">Daily forecast</div>
-        <ScrollContainer draggingClassName="cursor-grabbing" nativeMobileScroll={true}>
-          <div className="flex cursor-grab">
-            {weather1d.map((e: any, i: number) => (
-              <DailyItem dailyObject={e} key={i} />
-            ))}
+    <div className="bg-white/50 backdrop-blur-lg rounded-lg p-4 mt-4 select-none">
+      <div className="text-slate-700 font-medium select-none">Details</div>
+      <div className="grid grid-cols-1 xssmall:grid-cols-2  supasmall:grid-cols-3 small:grid-cols-4 sm:grid-cols-5 gap-y-2 mt-2 text-center">
+        <div>
+          <div className="text-sm text-slate-700">Precipitation</div>
+          <div className="text-slate-900 ">{details.values.precipitationIntensity} mm</div>
+        </div>
+        <div>
+          <div className="text-sm text-slate-700">Humidity</div>
+          <div className="text-slate-900 ">{details.values.humidity} %</div>
+        </div>
+        <div>
+          <div className="text-sm text-slate-700">Pressure</div>
+          <div className="text-slate-900 ">
+            {Math.round(details.values.pressureSurfaceLevel)} hPa
           </div>
-          <div className="cursor-grab">
-            <DailyChart weather1d={weather1d} />
+        </div>
+        <div>
+          <div className="text-sm text-slate-700">Visibility</div>
+          <div className="text-slate-900 ">{Math.round(details.values.visibility)} km</div>
+        </div>
+        <div>
+          <div className="text-sm text-slate-700">Wind</div>
+          <div className="text-slate-900 flex justify-center items-center">
+            <Arrow className="h-3 mr-1 rotate-[69deg]" />
+            {details.values.windSpeed} m/s
           </div>
-        </ScrollContainer>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 export default Details;
