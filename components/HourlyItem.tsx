@@ -9,10 +9,6 @@ const HourlyItem = ({ hourlyObject }: any) => {
   const [timeFormat, setTimeFormat] = useLocalStorage('timeFormat', 1);
   let hour: string = date.getHours() + ':00';
 
-  useEffect(() => {
-    console.log(timeFormat);
-  }, [timeFormat]);
-
   if (timeFormat === 0) {
     hour = formatHour(date);
   }
