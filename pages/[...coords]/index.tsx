@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import DailyForecast from '../../components/DailyForecast';
 import Details from '../../components/Details';
+import Dropdown from '../../components/Dropdown';
 import HourlyForecast from '../../components/HourlyForecast';
 import { coordsToName } from '../../utils/coords';
 import useWeather from '../../utils/useWeather';
@@ -26,7 +27,10 @@ const Weather: NextPage = () => {
   return (
     <div className="m-4 md:max-w-3xl md:mx-auto">
       <div className="h-[80vh]">
-        <div className="text-slate-50 text-lg font-400">{city}</div>
+        <div className="flex justify-between items-start">
+          <div className="text-slate-50 text-lg font-400">{city}</div> <Dropdown />
+        </div>
+
         <div className="text-white/90 text-2xl">
           {codeToWeatherTitle(weather1h[0].values.weatherCode)}
         </div>

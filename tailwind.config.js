@@ -7,6 +7,7 @@ module.exports = {
         xssmall: '250px',
         supasmall: '410px',
         small: '560px',
+        sma: '650px',
       },
     },
   },

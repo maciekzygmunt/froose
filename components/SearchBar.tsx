@@ -38,7 +38,7 @@ const SearchBar = () => {
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          className="rounded-lg w-full h-12 pl-10  border border-slate-300 placeholder:italic placeholder:font-medium outline-none focus:ring-2 focus:ring-slate-600 focus:shadow-xl transition-all ease-out duration-150"
+          className="rounded-lg w-full h-12 pl-10 border border-slate-300 placeholder:italic placeholder:font-medium outline-none focus:ring-2 focus:ring-slate-600 focus:shadow-xl transition-all ease-out duration-150"
           placeholder="Search..."
         />
         {loading && (
