@@ -15,6 +15,7 @@ const Weather: NextPage = () => {
   const { weather1h, weather1d, city, fetchWeather, weatherLoading } = useWeather();
   const router = useRouter();
   const coords = router.query.coords;
+  const [favorites, setFavorites] = useLocalStorage('favorites', '[]');
 
   useEffect(() => {
     if (coords && router.isReady) {
@@ -25,6 +26,8 @@ const Weather: NextPage = () => {
   if (!weather1h?.length || weatherLoading) {
     return <></>;
   }
+
+  const addToFavorite = () => {};
 
   return (
     <div className="m-4 md:max-w-3xl md:mx-auto">
@@ -45,7 +48,10 @@ const Weather: NextPage = () => {
           </div>
           <div className="flex flex-col items-center">
             <Dropdown />
-            <div className="ml-2 mt-4">
+            <div
+              onClick={addToFavorite}
+              className="ml-2 mt-4 hover:scale-105 transition-all duration-150"
+            >
               <svg
                 width="38"
                 height="38"

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 
 const useLocalStorage = (keyName: string, defaultValue: any) => {
+  //TODO: fix local storage listener
   const [storedValue, setStoredValue] = React.useState(() => {
     try {
       const value = window.localStorage.getItem(keyName);
