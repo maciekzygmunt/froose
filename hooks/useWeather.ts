@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { coordsToName } from './coords';
+import { coordsToName } from '../utils/coords';
 import { useDates } from './useDates';
 
 const useWeather = () => {

@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { BiCurrentLocation, BiLoaderAlt } from 'react-icons/bi';
 import { coordsToName, nameToCoords } from '../utils/coords';
-import { useGeoLocation } from '../utils/useGeoLocation';
+import { useGeoLocation } from '../hooks/useGeoLocation';
 
 const SearchBar = () => {
   const { latitude, longitude } = useGeoLocation();

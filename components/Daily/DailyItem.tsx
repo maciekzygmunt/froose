@@ -1,5 +1,5 @@
-import { numberToWeekDay, isToday, numberToMonth } from '../utils/dates';
-import { codeToWeatherTitle } from '../utils/weatherCodes';
+import { numberToWeekDay, isToday, numberToMonth } from '../../utils/dates';
+import { codeToWeatherTitle } from '../../utils/weatherCodes';
 import Marquee from 'react-fast-marquee';
 
 const DailyItem = ({ dailyObject }: any) => {

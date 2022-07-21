@@ -2,11 +2,11 @@ import { Menu, Transition } from '@headlessui/react';
 import { Fragment, useEffect, useRef, useState } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { Tab } from '@headlessui/react';
-import useLocalStorage from '../utils/useLocalStorage';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 const Dropdown = () => {
   const [timeFormat, setTimeFormat] = useLocalStorage('timeFormat', 1);
-  const [units, setUnits] = useLocalStorage('units', 2);
+  const [units, setUnits] = useLocalStorage('units', 0);
 
   const classNames = (...classes: any[]) => {
     return classes.filter(Boolean).join(' ');
@@ -17,7 +17,7 @@ const Dropdown = () => {
   };
 
   const changeUnitsHandler = (i: number) => {
-    setUnits(i + 2);
+    setUnits(i);
   };
 
   return (
@@ -35,7 +35,7 @@ const Dropdown = () => {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none p-1">
+          <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 ">
             <div className="px-1 py-1 ">
               <Menu.Item>
                 {({ active }) => (
@@ -86,7 +86,7 @@ const Dropdown = () => {
             </div>
             <div className="px-1 py-1">
               <p className="text-xs ml-1 text-slate-700">Units:</p>
-              <Tab.Group defaultIndex={units - 2} onChange={changeUnitsHandler}>
+              <Tab.Group defaultIndex={units} onChange={changeUnitsHandler}>
                 <Tab.List className="flex space-x-1 rounded-xl bg-blue-400 p-1">
                   <Tab
                     key={1}

@@ -1,10 +1,10 @@
-import HourlyItem from './HourlyItem';
+import HourlyItem from '../Hourly/HourlyItem';
 import gsap from 'gsap';
 import { useEffect, useRef } from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
-import DailyItem from './DailyItem';
-import DailyChart from './DailyChart';
-import Arrow from '../icons/arrow.svg';
+import DailyItem from '../Daily/DailyItem';
+import DailyChart from '../Daily/DailyChart';
+import Arrow from '../../icons/arrow.svg';
 
 const Details = ({ details }: any) => {
   const rotateDeg = Math.round(details.values.windDirection);

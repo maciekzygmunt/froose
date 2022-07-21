@@ -30,7 +30,7 @@ const useLocalStorage = (keyName: string, defaultValue: any) => {
     let event = new Event('storage');
     event.newValue = newValue;
     window.dispatchEvent(event);
-    // setStoredValue(newValue);
+    setStoredValue(newValue);
     // window.location.reload();
   };
 
