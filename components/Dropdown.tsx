@@ -8,7 +8,7 @@ import { FavoriteCity } from '../types';
 
 const Dropdown = () => {
   const [timeFormat, setTimeFormat] = useLocalStorage('timeFormat', 1);
-  const [units, setUnits] = useLocalStorage('units', 0);
+  const [units, setUnits] = useLocalStorage('units', 'metric');
   const [favorites, setFavorites] = useLocalStorage('favorites', []);
 
   const classNames = (...classes: any[]) => {
@@ -20,7 +20,11 @@ const Dropdown = () => {
   };
 
   const changeUnitsHandler = (i: number) => {
-    setUnits(i);
+    if (i === 0) {
+      setUnits('metric');
+    } else if (i === 1) {
+      setUnits('imperial');
+    }
   };
 
   return (
@@ -94,10 +98,10 @@ const Dropdown = () => {
             </div>
             <div className="px-1 py-1">
               <p className="text-xs ml-1 text-slate-700">Units:</p>
-              <Tab.Group defaultIndex={units} onChange={changeUnitsHandler}>
+              <Tab.Group defaultIndex={units === 'metric' ? 0 : 1} onChange={changeUnitsHandler}>
                 <Tab.List className="flex space-x-1 rounded-xl bg-blue-400 p-1">
                   <Tab
-                    key={1}
+                    key={'metric'}
                     className={({ selected }) =>
                       classNames(
                         'w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700',
@@ -111,7 +115,7 @@ const Dropdown = () => {
                     metric/°C
                   </Tab>
                   <Tab
-                    key={2}
+                    key={'imperial'}
                     className={({ selected }) =>
                       classNames(
                         'w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700',

@@ -16,10 +16,14 @@ export const useGeoLocation = () => {
     setLocationLoading(false);
   };
 
+  const onError = () => {
+    console.log('test');
+  };
+
   useEffect(() => {
     setLocationLoading(true);
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(onSuccess);
+      navigator.geolocation.getCurrentPosition(onSuccess, onError);
     }
   }, []);
 

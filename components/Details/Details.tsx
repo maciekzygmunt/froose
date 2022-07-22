@@ -5,8 +5,11 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 import DailyItem from '../Daily/DailyItem';
 import DailyChart from '../Daily/DailyChart';
 import Arrow from '../../icons/arrow.svg';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
 const Details = ({ details }: any) => {
+  const [units, setUnits] = useLocalStorage('units', 'metric');
+  const isMetric = units === 'metric' ? true : false;
   const rotateDeg = Math.round(details.values.windDirection);
 
   return (
@@ -15,7 +18,9 @@ const Details = ({ details }: any) => {
       <div className="grid grid-cols-1 xssmall:grid-cols-2  supasmall:grid-cols-3 small:grid-cols-4 sma:grid-cols-5 gap-y-2 mt-2 text-center">
         <div>
           <div className="text-sm text-slate-700">Precipitation</div>
-          <div className="text-slate-900 ">{details.values.precipitationIntensity} mm</div>
+          <div className="text-slate-900 ">
+            {details.values.precipitationIntensity} {isMetric ? 'mm' : 'in'}
+          </div>
         </div>
         <div>
           <div className="text-sm text-slate-700">Humidity</div>
@@ -24,18 +29,20 @@ const Details = ({ details }: any) => {
         <div>
           <div className="text-sm text-slate-700">Pressure</div>
           <div className="text-slate-900 ">
-            {Math.round(details.values.pressureSurfaceLevel)} hPa
+            {Math.round(details.values.pressureSurfaceLevel)} {isMetric ? 'hPa' : 'inHg'}
           </div>
         </div>
         <div>
           <div className="text-sm text-slate-700">Visibility</div>
-          <div className="text-slate-900 ">{Math.round(details.values.visibility)} km</div>
+          <div className="text-slate-900 ">
+            {Math.round(details.values.visibility)} {isMetric ? 'km' : 'mi'}
+          </div>
         </div>
         <div>
           <div className="text-sm text-slate-700">Wind</div>
           <div className="text-slate-900 flex justify-center items-center">
             <Arrow style={{ transform: `rotate(${rotateDeg}deg)` }} className="h-3 mr-1" />
-            {details.values.windSpeed} m/s
+            {details.values.windSpeed} {isMetric ? 'm/s' : 'mph'}
           </div>
         </div>
       </div>

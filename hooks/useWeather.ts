@@ -1,18 +1,20 @@
 import { useState } from 'react';
 import { coordsToName } from '../utils/coords';
 import { useDates } from './useDates';
+import useLocalStorage from './useLocalStorage';
 
 const useWeather = () => {
   const { timeZone } = useDates();
   const [loading, setLoading] = useState(false);
   const [weather1h, setWeather1h] = useState<any>([]);
   const [weather1d, setWeather1d] = useState<any>([]);
-  const [city, setCity] = useState<string>('');
+  const [city, setCity] = useState<string | undefined>('');
+  const [units, setUnits] = useLocalStorage('units', 'metric');
 
   const fetchWeather = async (latitude: number | null, longitude: number | null) => {
     setLoading(true);
     // const res = await fetch(
-    //   `https://api.tomorrow.io/v4/timelines?location=${latitude},${longitude}&fields=humidity,precipitationIntensity,temperature,windDirection,windSpeed,pressureSurfaceLevel,weatherCode,weatherCodeFullDay,visibility&timesteps=1h,1d&timezone=${timeZone}&units=metric&apikey=${process.env.NEXT_PUBLIC_WEATHER_KEY}`
+    //   `https://api.tomorrow.io/v4/timelines?location=${latitude},${longitude}&fields=humidity,precipitationIntensity,temperature,windDirection,windSpeed,pressureSurfaceLevel,weatherCode,weatherCodeFullDay,visibility&timesteps=1h,1d&timezone=${timeZone}&units=${units}&apikey=${process.env.NEXT_PUBLIC_WEATHER_KEY}`
     // );
     const res = await fetch('http://localhost:3001/data');
     const data = await res.json();
