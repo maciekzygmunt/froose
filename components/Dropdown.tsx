@@ -1,12 +1,15 @@
 import { Menu, Transition } from '@headlessui/react';
-import { Fragment, useEffect, useRef, useState } from 'react';
+import { forwardRef, Fragment, useEffect, useRef, useState } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { Tab } from '@headlessui/react';
 import useLocalStorage from '../hooks/useLocalStorage';
+import Link from 'next/link';
+import { FavoriteCity } from '../types';
 
 const Dropdown = () => {
   const [timeFormat, setTimeFormat] = useLocalStorage('timeFormat', 1);
   const [units, setUnits] = useLocalStorage('units', 0);
+  const [favorites, setFavorites] = useLocalStorage('favorites', []);
 
   const classNames = (...classes: any[]) => {
     return classes.filter(Boolean).join(' ');
@@ -37,17 +40,22 @@ const Dropdown = () => {
         >
           <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 ">
             <div className="px-1 py-1 ">
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    className={`${
-                      active ? 'bg-blue-400 text-white' : 'text-gray-900'
-                    } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                  >
-                    Favourites
-                  </button>
-                )}
-              </Menu.Item>
+              <p className="text-xs ml-1 text-slate-700">Favorites:</p>
+              {favorites.map((fav: FavoriteCity, i: number) => (
+                <Menu.Item>
+                  {({ active }) => (
+                    <MyLink
+                      key={i}
+                      className={`${
+                        active ? 'bg-blue-400 text-white' : 'text-gray-900'
+                      } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                      href={`/${fav.latitude}/${fav.longitude}`}
+                    >
+                      {fav.city}
+                    </MyLink>
+                  )}
+                </Menu.Item>
+              ))}
             </div>
             <div className="px-1 py-1">
               <p className="text-xs ml-1 text-slate-700">Time format:</p>
@@ -126,3 +134,14 @@ const Dropdown = () => {
   );
 };
 export default Dropdown;
+
+const MyLink = forwardRef((props, ref) => {
+  let { href, children, ...rest } = props;
+  return (
+    <Link href={href}>
+      <a ref={ref} {...rest}>
+        {children}
+      </a>
+    </Link>
+  );
+});

@@ -5,12 +5,15 @@ export const coordsToName = async (latitude: number | null, longitude: number | 
 
   const data = await response.json();
 
-  // if (data.data[0].administrative_area) {
-  //   return data.data[0].administrative_area;
-  // } else if (data.data[0].county) {
-  //   return data.data[0].county;
-  // }
-  return data.data[0].label;
+  if (data.data[0].locality) {
+    return data.data[0].locality + ', ' + data.data[0].country_code;
+  } else if (data.data[0].administrative_area) {
+    return data.data[0].administrative_area + ', ' + data.data[0].country_code;
+  } else if (data.data[0].county) {
+    return data.data[0].county + ', ' + data.data[0].country_code;
+  } else if (data.data[0].neighbourhood) {
+    return data.data[0].neighbourhood + ', ' + data.data[0].country_code;
+  }
 };
 
 export const nameToCoords = async (query: string) => {
