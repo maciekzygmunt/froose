@@ -1,10 +1,30 @@
 import { Menu, Transition } from '@headlessui/react';
-import { forwardRef, Fragment, useEffect, useRef, useState } from 'react';
+import React, { forwardRef, Fragment, useEffect, useRef, useState } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { Tab } from '@headlessui/react';
 import useLocalStorage from '../hooks/useLocalStorage';
 import Link from 'next/link';
 import { FavoriteCity } from '../types';
+
+interface Props {
+  href: string;
+  children: React.ReactNode;
+  className: string;
+}
+
+const MyLink: React.FC<Props> = forwardRef(
+  ({ href, children, className }, ref: React.ForwardedRef<HTMLAnchorElement>) => {
+    return (
+      <Link href={href}>
+        <a ref={ref} className={className}>
+          {children}
+        </a>
+      </Link>
+    );
+  }
+);
+
+MyLink.displayName = 'MyLink';
 
 const Dropdown = () => {
   const [timeFormat, setTimeFormat] = useLocalStorage('timeFormat', 1);
@@ -46,10 +66,9 @@ const Dropdown = () => {
             <div className="px-1 py-1 ">
               <p className="text-xs ml-1 text-slate-700">Favorites:</p>
               {favorites.map((fav: FavoriteCity, i: number) => (
-                <Menu.Item>
+                <Menu.Item key={i}>
                   {({ active }) => (
                     <MyLink
-                      key={i}
                       className={`${
                         active ? 'bg-blue-400 text-white' : 'text-gray-900'
                       } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
@@ -138,14 +157,3 @@ const Dropdown = () => {
   );
 };
 export default Dropdown;
-
-const MyLink = forwardRef((props, ref) => {
-  let { href, children, ...rest } = props;
-  return (
-    <Link href={href}>
-      <a ref={ref} {...rest}>
-        {children}
-      </a>
-    </Link>
-  );
-});
