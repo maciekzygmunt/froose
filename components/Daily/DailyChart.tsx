@@ -12,6 +12,7 @@ import {
 import { useEffect, useRef } from 'react';
 import { Line } from 'react-chartjs-2';
 import ChartDataLabels, { Context } from 'chartjs-plugin-datalabels';
+import { ChartJSOrUndefined } from 'react-chartjs-2/dist/types';
 
 ChartJS.register(
   CategoryScale,
@@ -33,10 +34,10 @@ export const DailyChart = ({ weather1d }: any) => {
     const dayOfMonth = date.getDate();
     return dayOfMonth;
   });
-  const canva = useRef();
+  const canva = useRef<ChartJSOrUndefined<'line'>>();
 
   useEffect(() => {
-    canva.current.resize(1110, 150);
+    canva?.current?.resize(1110, 150);
   }, []);
 
   const options = {
@@ -80,7 +81,7 @@ export const DailyChart = ({ weather1d }: any) => {
     },
   };
 
-  const data = {
+  const data: any = {
     labels,
     datasets: [
       {

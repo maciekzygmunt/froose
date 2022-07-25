@@ -4,7 +4,7 @@ import useWeather from '../hooks/useWeather';
 import { FavoriteCity } from '../types';
 
 interface FavoriteStarProps {
-  city: string;
+  city: string | undefined;
 }
 
 const FavoriteStar = ({ city }: FavoriteStarProps) => {
