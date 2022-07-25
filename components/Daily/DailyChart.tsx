@@ -49,14 +49,11 @@ export const DailyChart = ({ weather1d }: any) => {
       ChartDataLabels,
       datalabels: {
         color: '#334155',
-        anchor: 'end',
         font: {
           size: 16,
           weight: 400,
           family: 'Poppins',
         },
-        align: 290,
-        offset: -6,
         formatter: function (value: string, context: Context) {
           return value + '°';
         },
@@ -77,7 +74,8 @@ export const DailyChart = ({ weather1d }: any) => {
       padding: {
         left: 16,
         right: 16,
-        top: 16,
+        top: 20,
+        bottom: 22,
       },
     },
   };
@@ -90,13 +88,22 @@ export const DailyChart = ({ weather1d }: any) => {
         label: 'Max',
         borderColor: 'rgb(250, 240, 150)',
         backgroundColor: 'rgba(255, 231, 16, 0.5)',
-        // showLine: false,
+        datalabels: {
+          anchor: 'end',
+          align: 290,
+          offset: -6,
+        },
       },
       {
         data: minTemps,
         label: 'Min',
         borderColor: 'rgb(53, 162, 235)',
         backgroundColor: 'rgba(53, 162, 235, 0.5)',
+        datalabels: {
+          anchor: 'start',
+          align: 78,
+          offset: 0,
+        },
       },
     ],
   };
