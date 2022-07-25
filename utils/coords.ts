@@ -1,6 +1,6 @@
 export const coordsToName = async (latitude: number | null, longitude: number | null) => {
   const response = await fetch(
-    `http://api.positionstack.com/v1/reverse?access_key=${process.env.NEXT_PUBLIC_GEOCODER_KEY}&query=${latitude},${longitude}&limit=1`
+    `https://api.positionstack.com/v1/reverse?access_key=${process.env.NEXT_PUBLIC_GEOCODER_KEY}&query=${latitude},${longitude}&limit=1`
   );
 
   const data = await response.json();
@@ -19,7 +19,7 @@ export const coordsToName = async (latitude: number | null, longitude: number | 
 export const nameToCoords = async (query: string) => {
   try {
     const response = await fetch(
-      `http://api.positionstack.com/v1/forward?access_key=a003a4e4b50c3a472ad3f0d524bc278d&query=${query}&limit=1`
+      `https://api.positionstack.com/v1/forward?access_key=a003a4e4b50c3a472ad3f0d524bc278d&query=${query}&limit=1`
     );
     const data = await response.json();
     return {
