@@ -10,7 +10,7 @@ const useWeather = () => {
   const [weather1d, setWeather1d] = useState<any>([]);
   const [city, setCity] = useState<string | undefined>('');
   const [units, setUnits] = useLocalStorage('units', 'metric');
-
+  //TODO: check position of hourly (no always on 2 place)
   const fetchWeather = async (latitude: number | null, longitude: number | null) => {
     setLoading(true);
     const devMode = process.env.NEXT_PUBLIC_DEV_MODE;
@@ -18,11 +18,11 @@ const useWeather = () => {
     if (devMode === 'true') {
       const res = await fetch('http://localhost:3001/data');
       const data = await res.json();
-      const hourlyWeather = data.timelines[0].intervals.slice(0, 24);
-      const dailyWeather = data.timelines[1].intervals.map((day: any) => {
+      const hourlyWeather = data.timelines[1].intervals.slice(0, 24);
+      const dailyWeather = data.timelines[0].intervals.map((day: any) => {
         const date = day.startTime.slice(0, 10);
         let min = day.values.temperature;
-        data.timelines[0].intervals.map((hour: any) => {
+        data.timelines[1].intervals.map((hour: any) => {
           if (hour.startTime.includes(date)) {
             if (hour.values.temperature < min) {
               min = hour.values.temperature;

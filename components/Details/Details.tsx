@@ -19,7 +19,7 @@ const Details = ({ details }: any) => {
         <div>
           <div className="text-sm text-slate-700">Precipitation</div>
           <div className="text-slate-900 ">
-            {details.values.precipitationIntensity} {isMetric ? 'mm' : 'in'}
+            {Math.round(details.values.precipitationIntensity)} {isMetric ? 'mm' : 'in'}
           </div>
         </div>
         <div>
