@@ -38,7 +38,7 @@ export const DailyChart = ({ weather1d }: any) => {
 
   useEffect(() => {
     canva?.current?.resize(1110, 150);
-  }, []);
+  }, []); 
 
   const options = {
     responsive: false,

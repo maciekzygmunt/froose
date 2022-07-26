@@ -8,6 +8,7 @@ import HourlyForecast from '../../components/Hourly/HourlyForecast';
 import useWeather from '../../hooks/useWeather';
 import { codeToWeatherTitle } from '../../utils/weatherCodes';
 import FavoriteStar from '../../components/FavoriteStar';
+import { coordsToName, nameToCoords } from '../../utils/coords';
 
 const Weather: NextPage = () => {
   const { weather1h, weather1d, city, fetchWeather, weatherLoading } = useWeather();
