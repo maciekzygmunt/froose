@@ -2,19 +2,16 @@ import { useEffect } from 'react';
 import { formatHour } from '../../utils/dates';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import WeatherIcon from '../WeatherIcon';
+import { useTimeFormatContext } from '../../context/timeFormatContext';
 
 const HourlyItem = ({ hourlyObject }: any) => {
   const date = new Date(hourlyObject.startTime);
-  const [timeFormat, setTimeFormat] = useLocalStorage('timeFormat', 1);
+  const timeCtx = useTimeFormatContext();
   let hour: string = date.getHours() + ':00';
 
-  if (timeFormat === 0) {
+  if (timeCtx?.timeFormat === 0) {
     hour = formatHour(date);
   }
-
-  // useEffect(() => {
-  //   console.log(timeFormat);
-  // }, [timeFormat]);
 
   return (
     <div className="m-2 select-none text-slate-900 flex flex-col items-center gap-y-2 first:ml-0 min-w-[40px]">

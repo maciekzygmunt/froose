@@ -1,10 +1,11 @@
-import { Menu, Transition } from '@headlessui/react';
-import React, { forwardRef, Fragment, useEffect, useRef, useState } from 'react';
-import { AiOutlineMenu } from 'react-icons/ai';
-import { Tab } from '@headlessui/react';
-import useLocalStorage from '../hooks/useLocalStorage';
+import React, { forwardRef, Fragment, useContext } from 'react';
 import Link from 'next/link';
+import { Menu, Transition } from '@headlessui/react';
+import { Tab } from '@headlessui/react';
+import { AiOutlineMenu } from 'react-icons/ai';
+import useLocalStorage from '../hooks/useLocalStorage';
 import { FavoriteCity } from '../types';
+import { useTimeFormatContext } from '../context/timeFormatContext';
 
 interface Props {
   href: string;
@@ -27,7 +28,7 @@ const MyLink: React.FC<Props> = forwardRef(
 MyLink.displayName = 'MyLink';
 
 const Dropdown = () => {
-  const [timeFormat, setTimeFormat] = useLocalStorage('timeFormat', 1);
+  const timeCtx = useTimeFormatContext();
   const [units, setUnits] = useLocalStorage('units', 'metric');
   const [favorites, setFavorites] = useLocalStorage('favorites', []);
 
@@ -35,8 +36,8 @@ const Dropdown = () => {
     return classes.filter(Boolean).join(' ');
   };
 
-  const changeTimeFormatHandler = (i: number) => {
-    setTimeFormat(i);
+  const changeTimeFormatHandler = () => {
+    timeCtx?.toggleTimeFormat();
   };
 
   const changeUnitsHandler = (i: number) => {
@@ -82,7 +83,7 @@ const Dropdown = () => {
             </div>
             <div className="px-1 py-1">
               <p className="text-xs ml-1 text-slate-700">Time format:</p>
-              <Tab.Group defaultIndex={timeFormat} onChange={changeTimeFormatHandler}>
+              <Tab.Group defaultIndex={timeCtx?.timeFormat} onChange={changeTimeFormatHandler}>
                 <Tab.List className="flex space-x-1 rounded-xl bg-blue-400 p-1">
                   <Tab
                     key={1}

@@ -1,10 +1,10 @@
+import { useEffect, useRef, useState, useContext } from 'react';
 import { useRouter } from 'next/router';
-import { useEffect, useRef, useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
+import toast, { Toaster } from 'react-hot-toast';
 import { BiCurrentLocation, BiLoaderAlt } from 'react-icons/bi';
 import { coordsToName, nameToCoords } from '../utils/coords';
 import { useGeoLocation } from '../hooks/useGeoLocation';
-import toast, { Toaster } from 'react-hot-toast';
 
 const notify = () =>
   toast.error('Location denied.', {
@@ -24,6 +24,7 @@ const SearchBar = () => {
       const coords = await nameToCoords(inputValue);
       router.push(`/${coords?.latitude}/${coords?.longitude}`);
       setInputValue('');
+      inputRef.current?.blur();
     }
   };
 

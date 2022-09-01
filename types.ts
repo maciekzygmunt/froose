@@ -3,3 +3,8 @@ export interface FavoriteCity {
   latitude: number;
   longitude: number;
 }
+
+export interface TimeFormatContextType {
+  timeFormat: number;
+  toggleTimeFormat: () => void;
+}
