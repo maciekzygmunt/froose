@@ -10,6 +10,7 @@ import LightSnow from '../icons/animated/snowy-4.svg';
 import Snow from '../icons/animated/snowy-5.svg';
 import HeavySnow from '../icons/animated/snowy-6.svg';
 import Thunder from '../icons/animated/thunder.svg';
+import React from 'react';
 interface WeatherIconProps {
   code: number;
   time: number;
@@ -50,4 +51,5 @@ const WeatherIcon = ({ code, time }: WeatherIconProps) => {
 
   return icon;
 };
-export default WeatherIcon;
+
+export default React.memo(WeatherIcon);
