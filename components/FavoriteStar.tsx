@@ -4,7 +4,7 @@ import { FavoriteCity } from '../types';
 import { useFavoritesContext } from '../context/favoritesContext';
 
 interface FavoriteStarProps {
-  city: string;
+  city: string | undefined;
 }
 
 const FavoriteStar = ({ city }: FavoriteStarProps) => {

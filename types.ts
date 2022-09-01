@@ -19,6 +19,6 @@ export interface FavoritesContextType {
     latitude: number;
     longitude: number;
   }[];
-  addToFavorites: (city: string, latitude: number, longitude: number) => void;
+  addToFavorites: (city: string | undefined, latitude: number, longitude: number) => void;
   removeFromFavorites: (latitude: number, longitude: number) => void;
 }
