@@ -6,6 +6,7 @@ import { AiOutlineMenu } from 'react-icons/ai';
 import useLocalStorage from '../hooks/useLocalStorage';
 import { FavoriteCity } from '../types';
 import { usePreferencesContext } from '../context/preferencesContext';
+import { useFavoritesContext } from '../context/favoritesContext';
 
 interface Props {
   href: string;
@@ -29,8 +30,7 @@ MyLink.displayName = 'MyLink';
 
 const Dropdown = () => {
   const preferencesCtx = usePreferencesContext();
-  const [units, setUnits] = useLocalStorage('units', 'metric');
-  const [favorites, setFavorites] = useLocalStorage('favorites', []);
+  const favCtx = useFavoritesContext();
 
   const classNames = (...classes: any[]) => {
     return classes.filter(Boolean).join(' ');
@@ -59,24 +59,26 @@ const Dropdown = () => {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 ">
-            <div className="px-1 py-1 ">
-              <p className="text-xs ml-1 text-slate-700">Favorites:</p>
-              {favorites.map((fav: FavoriteCity, i: number) => (
-                <Menu.Item key={i}>
-                  {({ active }) => (
-                    <MyLink
-                      className={`${
-                        active ? 'bg-blue-400 text-white' : 'text-gray-900'
-                      } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                      href={`/${fav.latitude}/${fav.longitude}`}
-                    >
-                      {fav.city}
-                    </MyLink>
-                  )}
-                </Menu.Item>
-              ))}
-            </div>
+          <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+            {favCtx?.favorites.length !== 0 && (
+              <div className="px-1 py-1 ">
+                <p className="text-xs ml-1 text-slate-700">Favorites:</p>
+                {favCtx?.favorites.map((fav: FavoriteCity, i: number) => (
+                  <Menu.Item key={i}>
+                    {({ active }) => (
+                      <MyLink
+                        className={`${
+                          active ? 'bg-blue-400 text-white' : 'text-gray-900'
+                        } group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-blue-400 hover:text-blue-100`}
+                        href={`/${fav.latitude}/${fav.longitude}`}
+                      >
+                        {fav.city}
+                      </MyLink>
+                    )}
+                  </Menu.Item>
+                ))}
+              </div>
+            )}
             <div className="px-1 py-1">
               <p className="text-xs ml-1 text-slate-700">Time format:</p>
               <Tab.Group

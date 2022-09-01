@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app';
 import '../styles/globals.css';
 import SearchBar from '../components/SearchBar';
 import PreferencesContextProvider from '../context/preferencesContext';
+import FavoritesContextProvider from '../context/favoritesContext';
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -16,12 +17,14 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, []);
 
   return (
-    <PreferencesContextProvider>
-      <div className="antialiased">
-        <SearchBar />
-        <Component {...pageProps} />
-      </div>
-    </PreferencesContextProvider>
+    <FavoritesContextProvider>
+      <PreferencesContextProvider>
+        <div className="antialiased">
+          <SearchBar />
+          <Component {...pageProps} />
+        </div>
+      </PreferencesContextProvider>
+    </FavoritesContextProvider>
   );
 }
 

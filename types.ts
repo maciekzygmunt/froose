@@ -12,3 +12,13 @@ export interface PreferencesContextType {
   toggleTimeFormat: () => void;
   toggleUnits: () => void;
 }
+
+export interface FavoritesContextType {
+  favorites: {
+    city: string;
+    latitude: number;
+    longitude: number;
+  }[];
+  addToFavorites: (city: string, latitude: number, longitude: number) => void;
+  removeFromFavorites: (latitude: number, longitude: number) => void;
+}

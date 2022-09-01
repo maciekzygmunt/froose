@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import useLocalStorage from '../hooks/useLocalStorage';
 import useWeather from '../hooks/useWeather';
 import { FavoriteCity } from '../types';
+import { useFavoritesContext } from '../context/favoritesContext';
 
 interface FavoriteStarProps {
   city: string | undefined;
@@ -10,29 +11,16 @@ interface FavoriteStarProps {
 const FavoriteStar = ({ city }: FavoriteStarProps) => {
   const router = useRouter();
   const coords = router?.query?.coords!;
-  const [favorites, setFavorites] = useLocalStorage('favorites', []);
+  const favCtx = useFavoritesContext();
 
   const date = new Date();
   const hour = date.getHours();
 
-  const addToFavorite = () => {
-    const newArr = { city, latitude: coords[0], longitude: coords[1] };
-    const newFav = [...favorites, newArr];
-    setFavorites(newFav);
-  };
-
-  const removeFromFavorite = () => {
-    const newArr = favorites.filter(
-      (fav: FavoriteCity) => fav.latitude != +coords[0] && fav.longitude != +coords[1]
-    );
-    setFavorites(newArr);
-  };
-
   const checkIfFavorite = () => {
-    const filteredFavs = favorites.filter(
+    const filteredFavs = favCtx?.favorites.filter(
       (item: FavoriteCity) => item.latitude == +coords[0] && item.longitude == +coords[1]
     );
-    if (filteredFavs.length > 0) {
+    if (filteredFavs!.length > 0) {
       return true;
     } else {
       return false;
@@ -41,9 +29,9 @@ const FavoriteStar = ({ city }: FavoriteStarProps) => {
 
   const starHandler = () => {
     if (!checkIfFavorite()) {
-      addToFavorite();
+      favCtx?.addToFavorites(city, coords[0], coords[1]);
     } else {
-      removeFromFavorite();
+      favCtx?.removeFromFavorites(+coords[0], +coords[1]);
     }
   };
 
