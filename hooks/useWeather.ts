@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { coordsToName } from '../utils/coords';
 import { useDates } from './useDates';
-import useLocalStorage from './useLocalStorage';
+import { usePreferencesContext } from '../context/preferencesContext';
 
 const useWeather = () => {
   const { timeZone } = useDates();
@@ -9,7 +9,7 @@ const useWeather = () => {
   const [weather1h, setWeather1h] = useState<any>([]);
   const [weather1d, setWeather1d] = useState<any>([]);
   const [city, setCity] = useState<string | undefined>('');
-  const [units, setUnits] = useLocalStorage('units', 'metric');
+  const preferencesCtx = usePreferencesContext();
 
   const fetchWeather = async (latitude: number | null, longitude: number | null) => {
     setLoading(true);
@@ -40,7 +40,7 @@ const useWeather = () => {
       setWeather1d(dailyWeather);
     } else {
       const res = await fetch(
-        `https://api.tomorrow.io/v4/timelines?location=${latitude},${longitude}&fields=humidity,precipitationIntensity,temperature,windDirection,windSpeed,pressureSurfaceLevel,weatherCode,weatherCodeFullDay,visibility&timesteps=1h,1d&timezone=${timeZone}&units=${units}&apikey=${process.env.NEXT_PUBLIC_WEATHER_KEY}`
+        `https://api.tomorrow.io/v4/timelines?location=${latitude},${longitude}&fields=humidity,precipitationIntensity,temperature,windDirection,windSpeed,pressureSurfaceLevel,weatherCode,weatherCodeFullDay,visibility&timesteps=1h,1d&timezone=${timeZone}&units=${preferencesCtx?.preferences.units}&apikey=${process.env.NEXT_PUBLIC_WEATHER_KEY}`
       );
       const data = await res.json();
 

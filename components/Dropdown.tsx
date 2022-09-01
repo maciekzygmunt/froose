@@ -5,7 +5,7 @@ import { Tab } from '@headlessui/react';
 import { AiOutlineMenu } from 'react-icons/ai';
 import useLocalStorage from '../hooks/useLocalStorage';
 import { FavoriteCity } from '../types';
-import { useTimeFormatContext } from '../context/timeFormatContext';
+import { usePreferencesContext } from '../context/preferencesContext';
 
 interface Props {
   href: string;
@@ -28,7 +28,7 @@ const MyLink: React.FC<Props> = forwardRef(
 MyLink.displayName = 'MyLink';
 
 const Dropdown = () => {
-  const timeCtx = useTimeFormatContext();
+  const preferencesCtx = usePreferencesContext();
   const [units, setUnits] = useLocalStorage('units', 'metric');
   const [favorites, setFavorites] = useLocalStorage('favorites', []);
 
@@ -37,15 +37,11 @@ const Dropdown = () => {
   };
 
   const changeTimeFormatHandler = () => {
-    timeCtx?.toggleTimeFormat();
+    preferencesCtx?.toggleTimeFormat();
   };
 
   const changeUnitsHandler = (i: number) => {
-    if (i === 0) {
-      setUnits('metric');
-    } else if (i === 1) {
-      setUnits('imperial');
-    }
+    preferencesCtx?.toggleUnits();
   };
 
   return (
@@ -83,7 +79,10 @@ const Dropdown = () => {
             </div>
             <div className="px-1 py-1">
               <p className="text-xs ml-1 text-slate-700">Time format:</p>
-              <Tab.Group defaultIndex={timeCtx?.timeFormat} onChange={changeTimeFormatHandler}>
+              <Tab.Group
+                defaultIndex={preferencesCtx?.preferences.timeFormat}
+                onChange={changeTimeFormatHandler}
+              >
                 <Tab.List className="flex space-x-1 rounded-xl bg-blue-400 p-1">
                   <Tab
                     key={1}
@@ -118,7 +117,10 @@ const Dropdown = () => {
             </div>
             <div className="px-1 py-1">
               <p className="text-xs ml-1 text-slate-700">Units:</p>
-              <Tab.Group defaultIndex={units === 'metric' ? 0 : 1} onChange={changeUnitsHandler}>
+              <Tab.Group
+                defaultIndex={preferencesCtx?.preferences.units === 'metric' ? 0 : 1}
+                onChange={changeUnitsHandler}
+              >
                 <Tab.List className="flex space-x-1 rounded-xl bg-blue-400 p-1">
                   <Tab
                     key={'metric'}

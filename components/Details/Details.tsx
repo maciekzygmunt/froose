@@ -1,15 +1,10 @@
-import HourlyItem from '../Hourly/HourlyItem';
-import gsap from 'gsap';
-import { useEffect, useRef } from 'react';
-import ScrollContainer from 'react-indiana-drag-scroll';
-import DailyItem from '../Daily/DailyItem';
-import DailyChart from '../Daily/DailyChart';
 import Arrow from '../../icons/arrow.svg';
 import useLocalStorage from '../../hooks/useLocalStorage';
+import { usePreferencesContext } from '../../context/preferencesContext';
 
 const Details = ({ details }: any) => {
-  const [units, setUnits] = useLocalStorage('units', 'metric');
-  const isMetric = units === 'metric' ? true : false;
+  const preferencesCtx = usePreferencesContext();
+  const isMetric = preferencesCtx?.preferences.units === 'metric' ? true : false;
   const rotateDeg = Math.round(details.values.windDirection);
 
   return (

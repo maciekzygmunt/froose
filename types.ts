@@ -4,7 +4,11 @@ export interface FavoriteCity {
   longitude: number;
 }
 
-export interface TimeFormatContextType {
-  timeFormat: number;
+export interface PreferencesContextType {
+  preferences: {
+    timeFormat: number;
+    units: string;
+  };
   toggleTimeFormat: () => void;
+  toggleUnits: () => void;
 }

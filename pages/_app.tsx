@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import type { AppProps } from 'next/app';
 import '../styles/globals.css';
 import SearchBar from '../components/SearchBar';
-import TimeFormatProvider from '../context/timeFormatContext';
+import PreferencesContextProvider from '../context/preferencesContext';
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -16,12 +16,12 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, []);
 
   return (
-    <TimeFormatProvider>
+    <PreferencesContextProvider>
       <div className="antialiased">
         <SearchBar />
         <Component {...pageProps} />
       </div>
-    </TimeFormatProvider>
+    </PreferencesContextProvider>
   );
 }
 

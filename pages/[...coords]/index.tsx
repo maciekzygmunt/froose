@@ -9,17 +9,19 @@ import useWeather from '../../hooks/useWeather';
 import { codeToWeatherTitle } from '../../utils/weatherCodes';
 import FavoriteStar from '../../components/FavoriteStar';
 import { coordsToName, nameToCoords } from '../../utils/coords';
+import { usePreferencesContext } from '../../context/preferencesContext';
 
 const Weather: NextPage = () => {
   const { weather1h, weather1d, city, fetchWeather, weatherLoading } = useWeather();
   const router = useRouter();
   const coords = router.query.coords;
+  const preferencesCtx = usePreferencesContext();
 
   useEffect(() => {
     if (coords && router.isReady) {
       fetchWeather(+coords[0], +coords[1]);
     }
-  }, [router.isReady, coords]);
+  }, [router.isReady, coords, preferencesCtx?.preferences.units]);
 
   if (!weather1h?.length || weatherLoading) {
     return <></>;

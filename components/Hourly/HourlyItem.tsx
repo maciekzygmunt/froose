@@ -2,14 +2,14 @@ import { useEffect } from 'react';
 import { formatHour } from '../../utils/dates';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import WeatherIcon from '../WeatherIcon';
-import { useTimeFormatContext } from '../../context/timeFormatContext';
+import { usePreferencesContext } from '../../context/preferencesContext';
 
 const HourlyItem = ({ hourlyObject }: any) => {
   const date = new Date(hourlyObject.startTime);
-  const timeCtx = useTimeFormatContext();
+  const preferencesCtx = usePreferencesContext();
   let hour: string = date.getHours() + ':00';
 
-  if (timeCtx?.timeFormat === 0) {
+  if (preferencesCtx?.preferences.timeFormat === 0) {
     hour = formatHour(date);
   }
 
