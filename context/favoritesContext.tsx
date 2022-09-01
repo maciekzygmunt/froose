@@ -21,7 +21,7 @@ const FavoritesContextProvider = ({ children }: any) => {
     }
   });
 
-  const addToFavorites = (city: string, latitude: number, longitude: number) => {
+  const addToFavorites = (city: string | undefined, latitude: number, longitude: number) => {
     const newArr = { city, latitude, longitude };
     const newFav = [...favorites, newArr];
     setFavorites(newFav);

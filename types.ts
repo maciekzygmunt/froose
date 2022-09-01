@@ -1,5 +1,5 @@
 export interface FavoriteCity {
-  city: string;
+  city: string | undefined;
   latitude: number;
   longitude: number;
 }
@@ -15,7 +15,7 @@ export interface PreferencesContextType {
 
 export interface FavoritesContextType {
   favorites: {
-    city: string;
+    city: string | undefined;
     latitude: number;
     longitude: number;
   }[];
