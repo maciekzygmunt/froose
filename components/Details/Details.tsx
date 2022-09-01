@@ -1,5 +1,4 @@
 import Arrow from '../../icons/arrow.svg';
-import useLocalStorage from '../../hooks/useLocalStorage';
 import { usePreferencesContext } from '../../context/preferencesContext';
 
 const Details = ({ details }: any) => {

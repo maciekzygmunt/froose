@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { Menu, Transition } from '@headlessui/react';
 import { Tab } from '@headlessui/react';
 import { AiOutlineMenu } from 'react-icons/ai';
-import useLocalStorage from '../hooks/useLocalStorage';
 import { FavoriteCity } from '../types';
 import { usePreferencesContext } from '../context/preferencesContext';
 import { useFavoritesContext } from '../context/favoritesContext';

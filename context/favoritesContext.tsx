@@ -5,14 +5,8 @@ export const FavoritesContext = createContext<FavoritesContextType | null>(null)
 
 export const useFavoritesContext = () => useContext(FavoritesContext);
 
-interface favo {
-  city: string;
-  latitude: number;
-  longitude: number;
-}
-
 const FavoritesContextProvider = ({ children }: any) => {
-  const [favorites, setFavorites] = useState<favo[]>(() => {
+  const [favorites, setFavorites] = useState<any>(() => {
     try {
       let array = window.localStorage.getItem('favorites');
       if (array) {

@@ -6,7 +6,7 @@ export const PreferencesContext = createContext<PreferencesContextType | null>(n
 export const usePreferencesContext = () => useContext(PreferencesContext);
 
 const PreferencesContextProvider = ({ children }: any) => {
-  const [preferences, setPreferences] = useState(() => {
+  const [preferences, setPreferences] = useState<any>(() => {
     try {
       let timeFormat = window.localStorage.getItem('timeFormat');
       let units = window.localStorage.getItem('units');

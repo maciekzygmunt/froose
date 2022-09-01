@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { formatHour } from '../../utils/dates';
-import useLocalStorage from '../../hooks/useLocalStorage';
 import WeatherIcon from '../WeatherIcon';
 import { usePreferencesContext } from '../../context/preferencesContext';
 

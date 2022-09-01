@@ -1,11 +1,10 @@
 import { useRouter } from 'next/router';
-import useLocalStorage from '../hooks/useLocalStorage';
 import useWeather from '../hooks/useWeather';
 import { FavoriteCity } from '../types';
 import { useFavoritesContext } from '../context/favoritesContext';
 
 interface FavoriteStarProps {
-  city: string | undefined;
+  city: string;
 }
 
 const FavoriteStar = ({ city }: FavoriteStarProps) => {
@@ -29,7 +28,7 @@ const FavoriteStar = ({ city }: FavoriteStarProps) => {
 
   const starHandler = () => {
     if (!checkIfFavorite()) {
-      favCtx?.addToFavorites(city, coords[0], coords[1]);
+      favCtx?.addToFavorites(city, +coords[0], +coords[1]);
     } else {
       favCtx?.removeFromFavorites(+coords[0], +coords[1]);
     }
