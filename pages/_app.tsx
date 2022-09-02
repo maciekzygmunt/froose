@@ -4,6 +4,7 @@ import '../styles/globals.css';
 import SearchBar from '../components/SearchBar';
 import PreferencesContextProvider from '../context/preferencesContext';
 import FavoritesContextProvider from '../context/favoritesContext';
+import Head from 'next/head';
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -17,14 +18,20 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, []);
 
   return (
-    <FavoritesContextProvider>
-      <PreferencesContextProvider>
-        <div className="antialiased">
-          <SearchBar />
-          <Component {...pageProps} />
-        </div>
-      </PreferencesContextProvider>
-    </FavoritesContextProvider>
+    <>
+      <Head>
+        <title>Froose</title>
+        <link rel="shortcut icon" href="/favicon.ico" />
+      </Head>
+      <FavoritesContextProvider>
+        <PreferencesContextProvider>
+          <div className="antialiased">
+            <SearchBar />
+            <Component {...pageProps} />
+          </div>
+        </PreferencesContextProvider>
+      </FavoritesContextProvider>
+    </>
   );
 }
 
