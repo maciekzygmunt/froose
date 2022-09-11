@@ -20,33 +20,33 @@ const WeatherIcon = ({ code, time }: WeatherIconProps) => {
   let icon = <></>;
   if (code === 1000) {
     if (time < 20 && time > 5) {
-      icon = <Sun className="w-7 h-7 overflow-visible" />;
+      icon = <Sun className="overflow-visible" />;
     } else {
-      icon = <Moon className="w-7 h-7 overflow-visible" />;
+      icon = <Moon className=" overflow-visible" />;
     }
   } else if (code === 1100 || code === 1101) {
     if (time < 20 && time > 5) {
-      icon = <SunClouds className="w-7 h-7 overflow-visible" />;
+      icon = <SunClouds className="overflow-visible" />;
     } else {
-      icon = <MoonClouds className="w-7 h-7 overflow-visible" />;
+      icon = <MoonClouds className="overflow-visible" />;
     }
   } else if (code === 1102 || code === 1001 || code === 2100 || code === 2000) {
-    icon = <Clouds className="w-7 h-7 overflow-visible" />;
+    icon = <Clouds className="overflow-visible" />;
   } else if (code === 4000 || code === 4200 || code === 6000 || code === 6200) {
-    icon = <LightRain className="w-7 h-7 overflow-visible" />;
+    icon = <LightRain className="overflow-visible" />;
   } else if (code === 4001 || code === 6001) {
-    icon = <Rain className="w-7 h-7 overflow-visible" />;
+    icon = <Rain className="overflow-visible" />;
   } else if (code === 4201 || code === 6201) {
-    icon = <HeavyRain className="w-7 h-7 overflow-visible" />;
+    icon = <HeavyRain className="overflow-visible" />;
   } else if (code === 5001 || code === 5100 || code === 7102) {
-    icon = <LightSnow className="w-7 h-7 overflow-visible" />;
+    icon = <LightSnow className="overflow-visible" />;
   } else if (code === 5000 || code === 7000) {
-    icon = <Snow className="w-7 h-7 overflow-visible" />;
+    icon = <Snow className="overflow-visible" />;
   } else if (code === 5101 || code === 7101) {
-    icon = <HeavySnow className="w-7 h-7 overflow-visible" />;
+    icon = <HeavySnow className="overflow-visible" />;
   } else if (code === 8000) {
     //TODO: fix thunder
-    icon = <Thunder className="w-7 h-7 overflow-visible " />;
+    icon = <Thunder className="overflow-visible" />;
   }
 
   return icon;
