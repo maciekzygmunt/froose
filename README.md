@@ -1,34 +1,154 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div align="center">
 
-## Getting Started
+  <img src="icons/Froose Logo.png" alt="logo" width="400" height="auto" />
+  <h1>Froose</h1>
+  
+  <p>
+    An awesome Weather app! 
+  </p>
 
-First, run the development server:
+<p>
+  <a href="">
+    <img src="https://img.shields.io/github/last-commit/maciekzygmunt/froose" alt="last update" />
+  </a>
+  <a href="https://github.com/maciekzygmunt/froose/stargazers">
+    <img src="https://img.shields.io/github/stars/maciekzygmunt/froose" alt="stars" />
+  </a>
+  <a href="https://github.com/maciekzygmunt/froose/blob/master/LICENSE">
+    <img src="https://img.shields.io/github/license/maciekzygmunt/froose" alt="license" />
+  </a>
+</p>
+   
+<h4>
+    <a href="https://froose.vercel.app/">View Demo</a>
+  <span> · </span>
+    <a href="https://github.com/maciekzygmunt/froose">Documentation</a>
+  <span> · </span>
+    <a href="https://github.com/maciekzygmunt/froose/issues/">Report Bug</a>
+  <span> · </span>
+    <a href="https://github.com/maciekzygmunt/froose/issues/">Request Feature</a>
+  </h4>
+</div>
+
+<br />
+
+<!-- Table of Contents -->
+
+# :notebook_with_decorative_cover: Table of Contents
+
+- [About the Project](#star2-about-the-project)
+  - [Screenshots](#camera-screenshots)
+  - [Tech Stack](#space_invader-tech-stack)
+  - [Features](#dart-features)
+  - [Color Reference](#art-color-reference)
+  - [Environment Variables](#key-environment-variables)
+- [Getting Started](#toolbox-getting-started)
+  - [Run Locally](#running-run-locally)
+- [Contact](#handshake-contact)
+- [Acknowledgements](#gem-acknowledgements)
+
+<!-- About the Project -->
+
+## :star2: About the Project
+
+<!-- Screenshots -->
+
+### :camera: Screenshots
+
+<div align="center"> 
+  <img src="https://placehold.co/600x400?text=Your+Screenshot+here" alt="screenshot" />
+</div>
+
+<!-- TechStack -->
+
+### :space_invader: Tech Stack
+
+<details>
+  <summary>Client</summary>
+  <ul>
+    <li><a href="https://www.typescriptlang.org/">Typescript</a></li>
+    <li><a href="https://nextjs.org/">Next.js</a></li>
+    <li><a href="https://tailwindcss.com/">TailwindCSS</a></li>
+  </ul>
+</details>
+
+<!-- Features -->
+
+### :dart: Features
+
+- Feature 1
+- Feature 2
+- Feature 3
+
+<!-- Color Reference -->
+
+### :art: Color Reference
+
+| Color           | Hex                                                              |
+| --------------- | ---------------------------------------------------------------- |
+| Primary Color   | ![#3B82F6](https://via.placeholder.com/10/3B82F6?text=+) #3B82F6 |
+| Secondary Color | ![#06B6D4](https://via.placeholder.com/10/06B6D4?text=+) #06B6D4 |
+| Text Color      | ![#1e293b](https://via.placeholder.com/10/1e293b?text=+) #1e293b |
+
+<!-- Env Variables -->
+
+### :key: Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`NEXT_PUBLIC_WEATHER_KEY` - api key from [tommorow.io](https://www.tomorrow.io/)  
+`NEXT_PUBLIC_GEOCODER_KEY` - api key from [tomtom.com](https://developer.tomtom.com/)  
+`NEXT_PUBLIC_DEV_MODE` - use `true` when developing to not spam api
+
+<!-- Getting Started -->
+
+## :toolbox: Getting Started
+
+<!-- Prerequisites -->
+
+### :running: Run Locally
+
+Clone the project
 
 ```bash
-npm run dev
-# or
-yarn dev
+  git clone https://github.com/maciekzygmunt/froose.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Go to the project directory
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```bash
+  cd froose
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Install dependencies
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```bash
+  npm install
+```
 
-## Learn More
+Start the server
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+  npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<!-- Contact -->
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## :handshake: Contact
 
-## Deploy on Vercel
+Maciej Zygmunt - maciekzygmunt@interia.pl
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Project Link: [https://github.com/maciekzygmunt/froose](https://github.com/maciekzygmunt/froose)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<!-- Acknowledgments -->
+
+## :gem: Acknowledgements
+
+Useful resources and libraries that I have used in my project.
+
+- [Chart.js](https://www.chartjs.org/)
+- [React Easy Marquee](https://github.com/jagnani73/react-easy-marquee)
+- [React Hot Toast](https://react-hot-toast.com/)
+- [React Indiana Drag Scroll](https://github.com/norserium/react-indiana-drag-scroll)
+- [React Icons](https://react-icons.github.io/react-icons/)
+- [Awesome README template](https://github.com/Louis3797/awesome-readme-template)
