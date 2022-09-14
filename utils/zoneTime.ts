@@ -1,4 +1,4 @@
-export const useDates = () => {
+export const zoneTime = () => {
   const time = new Date();
   const startTime = time.toISOString();
   time.setDate(time.getDate() + 1);

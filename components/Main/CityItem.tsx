@@ -1,28 +1,41 @@
 import { FavoriteCity } from '../../types';
 import { FC, useEffect } from 'react';
-import useWeather from '../../hooks/useWeather';
+import { fetchWeather } from '../../utils/fetchWeather';
 import { codeToWeatherTitle } from '../../utils/weatherCodes';
 import { useRouter } from 'next/router';
 import WeatherIcon from '../WeatherIcon';
+import { usePreferencesContext } from '../../context/preferencesContext';
+import { useQuery } from '@tanstack/react-query';
 
 interface PropTypes {
   city: FavoriteCity;
 }
 
 const CityItem = ({ city }: PropTypes) => {
-  const { weather1h, fetchWeather, weatherLoading } = useWeather();
+  const preferencesCtx = usePreferencesContext();
+  const { isLoading, isError, data, error } = useQuery(
+    [
+      {
+        latitude: city.latitude,
+        longitude: city.longitude,
+        units: preferencesCtx?.preferences.units,
+      },
+    ],
+    () => fetchWeather(+city.latitude, +city.longitude, preferencesCtx?.preferences.units),
+    {
+      retry: 3,
+      staleTime: 300000,
+    }
+  );
+
   const router = useRouter();
   const date = new Date();
-
-  useEffect(() => {
-    fetchWeather(+city.latitude, +city.longitude);
-  }, []);
 
   const clickHandler = () => {
     router.push(`/${city?.latitude}/${city?.longitude}`);
   };
 
-  if (weatherLoading) {
+  if (isLoading) {
     return <></>;
   }
 
@@ -34,15 +47,15 @@ const CityItem = ({ city }: PropTypes) => {
       <div className="flex flex-col items-start">
         <div className="font-medium text-xl text-slate-800">{city.city}</div>
         <div className="text-3xl font-medium text-slate-800">
-          {codeToWeatherTitle(weather1h[0]?.values?.weatherCode)}
+          {codeToWeatherTitle(data!.hourlyWeather[0]?.values?.weatherCode)}
         </div>
         <div className="text-8xl font-semibold text-slate-800 relative">
-          {Math.round(weather1h[0]?.values?.temperature)}
+          {Math.round(data!.hourlyWeather[0]?.values?.temperature)}
           <span className="text-5xl font-medium absolute top-0">°</span>
         </div>
       </div>
       <div className="w-24 h-24">
-        <WeatherIcon code={weather1h[0]?.values?.weatherCode} time={date.getHours()} />
+        <WeatherIcon code={data!.hourlyWeather[0]?.values?.weatherCode} time={date.getHours()} />
       </div>
     </div>
   );

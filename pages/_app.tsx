@@ -5,6 +5,16 @@ import SearchBar from '../components/SearchBar';
 import PreferencesContextProvider from '../context/preferencesContext';
 import FavoritesContextProvider from '../context/favoritesContext';
 import Head from 'next/head';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -23,14 +33,17 @@ function MyApp({ Component, pageProps }: AppProps) {
         <title>Froose</title>
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
-      <FavoritesContextProvider>
-        <PreferencesContextProvider>
-          <div className="antialiased">
-            <SearchBar />
-            <Component {...pageProps} />
-          </div>
-        </PreferencesContextProvider>
-      </FavoritesContextProvider>
+      <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools initialIsOpen={true} />
+        <FavoritesContextProvider>
+          <PreferencesContextProvider>
+            <div className="antialiased">
+              <SearchBar />
+              <Component {...pageProps} />
+            </div>
+          </PreferencesContextProvider>
+        </FavoritesContextProvider>
+      </QueryClientProvider>
     </>
   );
 }
