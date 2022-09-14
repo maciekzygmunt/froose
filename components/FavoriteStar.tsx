@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import useWeather from '../hooks/useWeather';
+import { fetchWeather } from '../utils/fetchWeather';
 import { FavoriteCity } from '../types';
 import { useFavoritesContext } from '../context/favoritesContext';
 

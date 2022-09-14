@@ -4,6 +4,7 @@ export const coordsToName = async (latitude: number | null, longitude: number | 
   );
 
   const data = await response.json();
+
   if (data?.addresses[0]?.address?.municipalitySubdivision) {
     return (
       data.addresses[0].address.municipalitySubdivision +
