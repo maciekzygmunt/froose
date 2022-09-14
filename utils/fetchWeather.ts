@@ -1,15 +1,12 @@
-import { useState } from 'react';
 import { coordsToName } from './coords';
-import { zoneTime } from './zoneTime';
-import { usePreferencesContext } from '../context/preferencesContext';
-import { useQuery } from '@tanstack/react-query';
+import { getTimeZone } from './timeZone';
 
 export const fetchWeather = async (
   latitude: number | null,
   longitude: number | null,
   units: string | undefined
 ) => {
-  const { timeZone } = zoneTime();
+  const { timeZone } = getTimeZone();
   const devMode = process.env.NEXT_PUBLIC_DEV_MODE;
 
   if (devMode === 'true') {

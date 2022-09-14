@@ -6,7 +6,6 @@ import PreferencesContextProvider from '../context/preferencesContext';
 import FavoritesContextProvider from '../context/favoritesContext';
 import Head from 'next/head';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -34,7 +33,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
       <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools initialIsOpen={true} />
         <FavoritesContextProvider>
           <PreferencesContextProvider>
             <div className="antialiased">

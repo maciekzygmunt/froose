@@ -4,7 +4,6 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import toast, { Toaster } from 'react-hot-toast';
 import { BiCurrentLocation, BiLoaderAlt } from 'react-icons/bi';
 import { coordsToName, nameToCoords } from '../utils/coords';
-import { useGeoLocation } from '../hooks/useGeoLocation';
 
 const notify = () =>
   toast.error('Location denied.', {
@@ -12,7 +11,6 @@ const notify = () =>
   });
 
 const SearchBar = () => {
-  const { latitude, longitude } = useGeoLocation();
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
   const [loading, setLoading] = useState<boolean>(false);
@@ -28,14 +26,19 @@ const SearchBar = () => {
     }
   };
 
-  const locationHandler = async () => {
-    setLoading(true);
-    if (latitude && longitude) {
-      const placeName = await coordsToName(latitude, longitude);
+  const onSuccess = async (pos: any) => {
+    const crd = pos.coords;
+    if (crd.latitude && crd.longitude) {
+      const placeName = await coordsToName(crd.latitude, crd.longitude);
       setInputValue(placeName);
       inputRef.current?.focus();
-    } else {
-      notify();
+    }
+  };
+
+  const locationHandler = async () => {
+    setLoading(true);
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(onSuccess, notify);
     }
     setLoading(false);
   };
@@ -53,10 +56,9 @@ const SearchBar = () => {
           className="rounded-lg w-full h-12 pl-10 border border-slate-300 placeholder:italic placeholder:font-medium outline-none focus:ring-2 focus:ring-slate-600 focus:shadow-xl transition-all ease-out duration-150"
           placeholder="Search..."
         />
-        {loading && (
+        {loading ? (
           <BiLoaderAlt className="animate-spin absolute right-2 w-6 h-6 text-slate-600 cursor-pointer" />
-        )}
-        {!loading && (
+        ) : (
           <BiCurrentLocation
             onClick={locationHandler}
             className="absolute right-2 w-6 h-6 text-slate-600 cursor-pointer"
