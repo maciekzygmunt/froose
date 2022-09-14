@@ -86,9 +86,9 @@
 
 | Color           | Hex                                                              |
 | --------------- | ---------------------------------------------------------------- |
-| Primary Color   | ![#3B82F6](https://via.placeholder.com/10/3B82F6?text=+) #3B82F6 |
-| Secondary Color | ![#06B6D4](https://via.placeholder.com/10/06B6D4?text=+) #06B6D4 |
-| Text Color      | ![#1e293b](https://via.placeholder.com/10/1e293b?text=+) #1e293b |
+| Primary Color   | ![#3B82F6](https://via.placeholder.com/15/3B82F6/3B82F6.png) #3B82F6 |
+| Secondary Color | ![#06B6D4](https://via.placeholder.com/15/06B6D4/06B6D4.png) #06B6D4 |
+| Text Color      | ![#1e293b](https://via.placeholder.com/15/1e293b/1e293b.png) #1e293b |
 
 <!-- Env Variables -->
 
