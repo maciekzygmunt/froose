@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 import { AiOutlineSearch } from 'react-icons/ai';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { BiCurrentLocation, BiLoaderAlt } from 'react-icons/bi';
 import { coordsToName, nameToCoords } from '../utils/coords';
 
@@ -19,10 +19,16 @@ const SearchBar = () => {
   const submitHandler = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (inputValue) {
-      const coords = await nameToCoords(inputValue);
-      router.push(`/${coords?.latitude}/${coords?.longitude}`);
-      setInputValue('');
-      inputRef.current?.blur();
+      try {
+        const coords = await nameToCoords(inputValue);
+        router.push(`/${coords?.latitude}/${coords?.longitude}`);
+        setInputValue('');
+        inputRef.current?.blur();
+      } catch {
+        toast.error('Unable to fetch location.', {
+          position: 'bottom-center',
+        });
+      }
     }
   };
 
@@ -45,7 +51,6 @@ const SearchBar = () => {
 
   return (
     <form onSubmit={submitHandler}>
-      <Toaster />
       <div className="flex items-center m-4 relative drop-shadow-md md:max-w-3xl md:mx-auto">
         <AiOutlineSearch className="w-6 h-6 absolute pointer-events-none text-slate-600 left-2" />
         <input

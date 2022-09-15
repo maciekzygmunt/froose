@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import { PreferencesContextType } from '../types';
+import toast from 'react-hot-toast';
 
 export const PreferencesContext = createContext<PreferencesContextType | null>(null);
 

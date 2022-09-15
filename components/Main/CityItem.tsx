@@ -23,7 +23,7 @@ const CityItem = ({ city }: PropTypes) => {
     ],
     () => fetchWeather(+city.latitude, +city.longitude, preferencesCtx?.preferences.units),
     {
-      retry: 3,
+      retry: 0,
       staleTime: 300000,
     }
   );
@@ -35,7 +35,7 @@ const CityItem = ({ city }: PropTypes) => {
     router.push(`/${city?.latitude}/${city?.longitude}`);
   };
 
-  if (isLoading) {
+  if (isLoading || isError || !data?.hourlyWeather.length) {
     return <></>;
   }
 

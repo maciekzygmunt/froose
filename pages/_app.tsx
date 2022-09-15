@@ -6,6 +6,7 @@ import PreferencesContextProvider from '../context/preferencesContext';
 import FavoritesContextProvider from '../context/favoritesContext';
 import Head from 'next/head';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Toaster } from 'react-hot-toast';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -36,6 +37,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <FavoritesContextProvider>
           <PreferencesContextProvider>
             <div className="antialiased">
+              <Toaster />
               <SearchBar />
               <Component {...pageProps} />
             </div>

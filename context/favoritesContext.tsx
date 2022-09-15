@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
+import toast from 'react-hot-toast';
 import { FavoriteCity, FavoritesContextType } from '../types';
 
 export const FavoritesContext = createContext<FavoritesContextType | null>(null);
@@ -27,7 +28,14 @@ const FavoritesContextProvider = ({ children }: any) => {
     setFavorites(newFav);
     try {
       window.localStorage.setItem('favorites', JSON.stringify(newFav));
-    } catch {}
+      toast.success('Added to favorites.', {
+        position: 'bottom-center',
+      });
+    } catch {
+      toast.error('Something went wrong..', {
+        position: 'bottom-center',
+      });
+    }
   };
 
   const removeFromFavorites = (latitude: number, longitude: number) => {
@@ -37,7 +45,15 @@ const FavoritesContextProvider = ({ children }: any) => {
     setFavorites(newArr);
     try {
       window.localStorage.setItem('favorites', JSON.stringify(newArr));
-    } catch {}
+      toast('Removed from favorites.', {
+        position: 'bottom-center',
+        icon: '🗑️',
+      });
+    } catch {
+      toast.error('Something went wrong..', {
+        position: 'bottom-center',
+      });
+    }
   };
 
   return (

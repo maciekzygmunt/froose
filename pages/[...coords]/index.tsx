@@ -18,12 +18,12 @@ const Weather: NextPage = () => {
   const preferencesCtx = usePreferencesContext();
   const coords = router.query.coords || 'wait';
 
-  const { isLoading, isError, data, error, refetch } = useQuery(
+  const { isLoading, data } = useQuery(
     [{ latitude: +coords![0], longitude: +coords![1], units: preferencesCtx?.preferences.units }],
     () => fetchWeather(+coords![0], +coords![1], preferencesCtx?.preferences.units),
     {
       enabled: router.isReady,
-      retry: 3,
+      retry: 0,
       staleTime: 300000,
     }
   );
