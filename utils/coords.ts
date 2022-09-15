@@ -14,11 +14,14 @@ export const coordsToName = async (latitude: number | null, longitude: number | 
       );
     } else if (data?.addresses[0]?.address?.municipality) {
       return data.addresses[0].address.municipality + ', ' + data.addresses[0].address.countryCode;
+    } else {
+      throw new Error();
     }
   } catch {
     toast.error('Unable to fetch location.', {
       position: 'bottom-center',
     });
+    return '';
   }
 };
 
