@@ -56,7 +56,7 @@
 ### :camera: Screenshots
 
 <div align="center"> 
-  <img src="https://placehold.co/600x400?text=Your+Screenshot+here" alt="screenshot" />
+  <img src="icons/render.png" alt="screenshot" />
 </div>
 
 <!-- TechStack -->
@@ -76,16 +76,16 @@
 
 ### :dart: Features
 
-- Feature 1
-- Feature 2
-- Feature 3
+- Check weather for a given location
+- Add locations to favorites
+- Change time format(12h/24h) and units(metric/imperial)
 
 <!-- Color Reference -->
 
 ### :art: Color Reference
 
-| Color           | Hex                                                              |
-| --------------- | ---------------------------------------------------------------- |
+| Color           | Hex                                                                  |
+| --------------- | -------------------------------------------------------------------- |
 | Primary Color   | ![#3B82F6](https://via.placeholder.com/15/3B82F6/3B82F6.png) #3B82F6 |
 | Secondary Color | ![#06B6D4](https://via.placeholder.com/15/06B6D4/06B6D4.png) #06B6D4 |
 | Text Color      | ![#1e293b](https://via.placeholder.com/15/1e293b/1e293b.png) #1e293b |
