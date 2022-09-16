@@ -12,6 +12,7 @@ import { coordsToName, nameToCoords } from '../../utils/coords';
 import { usePreferencesContext } from '../../context/preferencesContext';
 import Head from 'next/head';
 import { useQuery } from '@tanstack/react-query';
+import Loader from '../../components/Loader';
 
 const Weather: NextPage = () => {
   const router = useRouter();
@@ -22,11 +23,23 @@ const Weather: NextPage = () => {
     [{ latitude: +coords![0], longitude: +coords![1], units: preferencesCtx?.preferences.units }],
     () => fetchWeather(+coords![0], +coords![1], preferencesCtx?.preferences.units),
     {
-      enabled: router.isReady,
+      enabled: router.isReady && (!isNaN(+coords![0]) || !isNaN(+coords![1])),
       retry: 0,
       staleTime: 300000,
     }
   );
+
+  if (router.isReady && (isNaN(+coords![0]) || isNaN(+coords![1]))) {
+    router.replace('/');
+  }
+
+  if (isLoading) {
+    return (
+      <div className="w-full flex justify-center mt-60">
+        <Loader />
+      </div>
+    );
+  }
 
   if (!data?.hourlyWeather?.length || isLoading) {
     return <></>;

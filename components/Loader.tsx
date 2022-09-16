@@ -1,40 +1,18 @@
-import gsap from 'gsap';
-import { useEffect, useRef } from 'react';
+import Lottie, { LottieRefCurrentProps } from 'lottie-react';
+import loadCloud from '../icons/loadCloud.json';
+import { useRef, useEffect } from 'react';
+import * as React from 'react';
 
-const Loader = (loading: boolean) => {
-  const logo = useRef<HTMLDivElement>(null);
-  const bg = useRef<HTMLDivElement>(null);
+const Loader = () => {
+  const lottieRef = useRef(null) as React.MutableRefObject<LottieRefCurrentProps | null>;
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    lottieRef?.current?.setSpeed(1.5);
+  }, []);
 
   return (
-    <div ref={bg} className="fixed top-0">
-      <div className="flex items-center justify-center bg-sky-400 h-screen w-screen relative">
-        <div ref={logo} className="flex items-end text-8xl font-bold text-white drop-shadow-xl">
-          fr
-          <svg
-            width="120"
-            height="120"
-            viewBox="0 0 60 60"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M56.122 26.1007C53.8213 23.4412 50.7112 21.6195 47.2965 20.9154C44.9426 13.0083 37.6729 7.55238 29.3502 7.55238C25.1058 7.55238 20.9482 9.01219 17.6434 11.6626C14.5785 14.1207 12.3459 17.5112 11.3023 21.2709C4.6118 23.2937 0 29.4621 0 36.5176C0 45.3015 7.14609 52.4476 15.9299 52.4476H44.2528C44.2843 52.4476 44.3157 52.4464 44.3467 52.444C48.5304 52.3727 52.4528 50.6955 55.3986 47.7161C58.3658 44.715 60 40.738 60 36.5176C60 32.691 58.6227 28.9915 56.122 26.1007ZM44.2379 50.0255C44.2173 50.0256 44.197 50.0264 44.1768 50.0277H15.9299C8.48051 50.0277 2.41992 43.967 2.41992 36.5176C2.41992 30.3271 6.60516 24.942 12.5979 23.4221C13.0352 23.3112 13.3746 22.9661 13.4781 22.5267C15.2187 15.1349 21.7455 9.97242 29.3503 9.97242C36.8273 9.97242 43.3282 15.0284 45.1594 22.2675C45.2786 22.7384 45.6679 23.0925 46.1479 23.1666C52.6652 24.1719 57.5801 29.9115 57.5801 36.5175C57.5802 43.8764 51.5948 49.9359 44.2379 50.0255Z"
-              fill="white"
-            />
-            <path
-              d="M31.1165 31.6959C30.1013 28.4958 28.1336 25.7404 25.4266 23.7272C22.6648 21.6735 19.3808 20.5879 15.9299 20.5879C15.2617 20.5879 14.72 21.1295 14.72 21.7978C14.72 22.4661 15.2616 23.0078 15.9299 23.0078C21.8464 23.0078 27.0225 26.7934 28.81 32.4277C28.9735 32.9429 29.4497 33.2721 29.9629 33.2721C30.0842 33.2721 30.2075 33.2537 30.329 33.2152C30.9659 33.013 31.3185 32.3329 31.1165 31.6959Z"
-              fill="white"
-            />
-            <path
-              d="M31.849 35.9323C31.8248 35.2645 31.2657 34.7428 30.5962 34.7668C29.9284 34.7911 29.4067 35.352 29.4307 36.0197C29.4368 36.185 29.4398 36.3526 29.4398 36.5176C29.4398 37.1858 29.9814 37.7276 30.6497 37.7276C31.3179 37.7276 31.8597 37.1859 31.8596 36.5176C31.8596 36.3237 31.856 36.1267 31.849 35.9323Z"
-              fill="white"
-            />
-          </svg>
-          se
-        </div>
-      </div>
+    <div className="w-96">
+      <Lottie animationData={loadCloud} loop={true} lottieRef={lottieRef} />
     </div>
   );
 };

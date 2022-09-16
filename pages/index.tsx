@@ -2,12 +2,14 @@ import type { NextPage } from 'next';
 import { useContext, useEffect, useState } from 'react';
 import Logo from '../components/Logo';
 import CityItem from '../components/Main/CityItem';
-import { FavoritesContext } from '../context/favoritesContext';
+import { useFavoritesContext } from '../context/favoritesContext';
 import { FavoriteCity } from '../types';
-import LoadingSpinner from '../icons/tail-spin.svg';
+import Loader from '../components/Loader';
+import { useIsFetching } from '@tanstack/react-query';
 
 const Home: NextPage = () => {
-  const favCtx = useContext(FavoritesContext);
+  const isFetching = useIsFetching() === 0 ? false : true;
+  const favCtx = useFavoritesContext();
   const [cities, setCities] = useState<FavoriteCity[]>();
 
   useEffect(() => {
@@ -42,14 +44,22 @@ const Home: NextPage = () => {
   return (
     <div className="flex flex-col items-center m-4 md:max-w-3xl md:mx-auto gap-y-2">
       <Logo />
-      <div className="self-start font-semibold text-3xl ml-1 text-white drop-shadow-2xl">
-        {favCtx?.favorites?.length !== 0 ? 'Favorites' : 'Around the world'}
-      </div>
-      <div className="flex flex-col gap-y-4 w-full">
-        {cities?.map((city) => (
-          <CityItem key={city.city} city={city} />
-        ))}
-      </div>
+      {isFetching ? (
+        <div className="m-20">
+          <Loader />
+        </div>
+      ) : (
+        <>
+          <div className="self-start font-semibold text-3xl ml-1 text-white drop-shadow-2xl">
+            {favCtx?.favorites?.length !== 0 ? 'Favorites' : 'Around the world'}
+          </div>
+          <div className="flex flex-col gap-y-4 w-full">
+            {cities?.map((city) => (
+              <CityItem key={city.city} city={city} />
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 };

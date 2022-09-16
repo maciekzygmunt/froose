@@ -1,5 +1,5 @@
 import { FavoriteCity } from '../../types';
-import { FC, useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 import { fetchWeather } from '../../utils/fetchWeather';
 import { codeToWeatherTitle } from '../../utils/weatherCodes';
 import { useRouter } from 'next/router';
@@ -13,7 +13,7 @@ interface PropTypes {
 
 const CityItem = ({ city }: PropTypes) => {
   const preferencesCtx = usePreferencesContext();
-  const { isLoading, isError, data, error } = useQuery(
+  const { isLoading, isError, data } = useQuery(
     [
       {
         latitude: city.latitude,
