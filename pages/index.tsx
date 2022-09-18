@@ -6,10 +6,13 @@ import { useFavoritesContext } from '../context/favoritesContext';
 import { FavoriteCity } from '../types';
 import Loader from '../components/Loader';
 import { useIsFetching } from '@tanstack/react-query';
+import { useErrorContext } from '../context/errorContext';
+import ErrorMessage from '../components/ErrorMessage';
 
 const Home: NextPage = () => {
-  const isFetching = useIsFetching() === 0 ? false : true;
+  const isFetching = useIsFetching();
   const favCtx = useFavoritesContext();
+  const errCtx = useErrorContext();
   const [cities, setCities] = useState<FavoriteCity[]>();
 
   useEffect(() => {
@@ -48,7 +51,7 @@ const Home: NextPage = () => {
         <div className="m-20">
           <Loader />
         </div>
-      ) : (
+      ) : !errCtx?.error ? (
         <>
           <div className="self-start font-semibold text-3xl ml-1 text-white drop-shadow-2xl">
             {favCtx?.favorites?.length !== 0 ? 'Favorites' : 'Around the world'}
@@ -59,6 +62,12 @@ const Home: NextPage = () => {
             ))}
           </div>
         </>
+      ) : errCtx?.error ? (
+        <div className="mt-32">
+          <ErrorMessage />
+        </div>
+      ) : (
+        ''
       )}
     </div>
   );

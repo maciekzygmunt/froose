@@ -7,6 +7,7 @@ import FavoritesContextProvider from '../context/favoritesContext';
 import Head from 'next/head';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'react-hot-toast';
+import ErrorContextProvider from '../context/errorContext';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -36,11 +37,13 @@ function MyApp({ Component, pageProps }: AppProps) {
       <QueryClientProvider client={queryClient}>
         <FavoritesContextProvider>
           <PreferencesContextProvider>
-            <div className="antialiased">
-              <Toaster />
-              <SearchBar />
-              <Component {...pageProps} />
-            </div>
+            <ErrorContextProvider>
+              <div className="antialiased">
+                <Toaster />
+                <SearchBar />
+                <Component {...pageProps} />
+              </div>
+            </ErrorContextProvider>
           </PreferencesContextProvider>
         </FavoritesContextProvider>
       </QueryClientProvider>

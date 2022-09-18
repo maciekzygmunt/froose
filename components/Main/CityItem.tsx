@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import WeatherIcon from '../WeatherIcon';
 import { usePreferencesContext } from '../../context/preferencesContext';
 import { useQuery } from '@tanstack/react-query';
+import { useErrorContext } from '../../context/errorContext';
 
 interface PropTypes {
   city: FavoriteCity;
@@ -13,7 +14,8 @@ interface PropTypes {
 
 const CityItem = ({ city }: PropTypes) => {
   const preferencesCtx = usePreferencesContext();
-  const { isLoading, isError, data } = useQuery(
+  const errCtx = useErrorContext();
+  const { isLoading, error, data } = useQuery(
     [
       {
         latitude: city.latitude,
@@ -23,10 +25,16 @@ const CityItem = ({ city }: PropTypes) => {
     ],
     () => fetchWeather(+city.latitude, +city.longitude, preferencesCtx?.preferences.units),
     {
-      retry: 0,
+      retry: false,
       staleTime: 300000,
     }
   );
+
+  useEffect(() => {
+    if (error) {
+      errCtx?.setError(true);
+    }
+  }, [error, errCtx]);
 
   const router = useRouter();
   const date = new Date();
@@ -35,7 +43,7 @@ const CityItem = ({ city }: PropTypes) => {
     router.push(`/${city?.latitude}/${city?.longitude}`);
   };
 
-  if (isLoading || isError || !data?.hourlyWeather.length) {
+  if (isLoading || !data?.hourlyWeather.length) {
     return <></>;
   }
 
