@@ -77,10 +77,11 @@ export const fetchWeather = async (
     }
   } catch (err) {
     notify();
-    return {
-      hourlyWeather: [],
-      dailyWeather: [],
-      name: '',
-    };
+    throw err;
+    // return {
+    //   hourlyWeather: [],
+    //   dailyWeather: [],
+    //   name: '',
+    // };
   }
 };

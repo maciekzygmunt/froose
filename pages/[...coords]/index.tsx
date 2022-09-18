@@ -13,13 +13,14 @@ import { usePreferencesContext } from '../../context/preferencesContext';
 import Head from 'next/head';
 import { useQuery } from '@tanstack/react-query';
 import Loader from '../../components/Loader';
+import ErrorMessage from '../../components/ErrorMessage';
 
 const Weather: NextPage = () => {
   const router = useRouter();
   const preferencesCtx = usePreferencesContext();
   const coords = router.query.coords || 'wait';
 
-  const { isLoading, data } = useQuery(
+  const { isLoading, data, isError } = useQuery(
     [{ latitude: +coords![0], longitude: +coords![1], units: preferencesCtx?.preferences.units }],
     () => fetchWeather(+coords![0], +coords![1], preferencesCtx?.preferences.units),
     {
@@ -41,8 +42,12 @@ const Weather: NextPage = () => {
     );
   }
 
-  if (!data?.hourlyWeather?.length || isLoading) {
-    return <></>;
+  if (isError) {
+    return (
+      <div className="mt-72">
+        <ErrorMessage />
+      </div>
+    );
   }
 
   return (
