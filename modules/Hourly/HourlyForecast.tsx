@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import HourlyItem from './HourlyItem';
 
-const HourlyForecast = ({ weather1h }: any) => {
+export const HourlyForecast = ({ weather1h }: any) => {
   const hourly = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -29,4 +29,3 @@ const HourlyForecast = ({ weather1h }: any) => {
     </div>
   );
 };
-export default HourlyForecast;

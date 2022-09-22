@@ -1,6 +1,5 @@
-import { useEffect } from 'react';
-import { formatHour } from '../../utils/dates';
-import WeatherIcon from '../WeatherIcon';
+import { formatHour } from '../../utils';
+import WeatherIcon from '../../components/WeatherIcon';
 import { usePreferencesContext } from '../../context/preferencesContext';
 
 const HourlyItem = ({ hourlyObject }: any) => {

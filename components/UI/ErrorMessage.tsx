@@ -1,4 +1,4 @@
-import ErrorCloud from '../icons/error-cloud.svg';
+import ErrorCloud from '../../assets/error-cloud.svg';
 
 const ErrorMessage = () => {
   return (

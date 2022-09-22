@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState, useContext } from 'react';
+import { useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { AiOutlineSearch } from 'react-icons/ai';
 import toast from 'react-hot-toast';
 import { BiCurrentLocation, BiLoaderAlt } from 'react-icons/bi';
-import { coordsToName, nameToCoords } from '../utils/coords';
+import { coordsToName, nameToCoords } from '../../utils';
 
 const notify = () =>
   toast.error('Location denied.', {

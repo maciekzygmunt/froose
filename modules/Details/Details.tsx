@@ -1,7 +1,7 @@
-import Arrow from '../../icons/arrow.svg';
+import Arrow from '../../assets/arrow.svg';
 import { usePreferencesContext } from '../../context/preferencesContext';
 
-const Details = ({ details }: any) => {
+export const Details = ({ details }: any) => {
   const preferencesCtx = usePreferencesContext();
   const isMetric = preferencesCtx?.preferences.units === 'metric' ? true : false;
   const rotateDeg = Math.round(details.values.windDirection);
@@ -43,4 +43,3 @@ const Details = ({ details }: any) => {
     </div>
   );
 };
-export default Details;

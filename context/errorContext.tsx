@@ -1,6 +1,4 @@
 import React, { createContext, useContext, useState } from 'react';
-import { PreferencesContextType } from '../types';
-import toast from 'react-hot-toast';
 
 interface ErrorContextType {
   error: boolean;

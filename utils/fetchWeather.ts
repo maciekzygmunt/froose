@@ -1,6 +1,6 @@
+import toast from 'react-hot-toast';
 import { coordsToName } from './coords';
 import { getTimeZone } from './timeZone';
-import toast from 'react-hot-toast';
 
 const notify = () =>
   toast.error('Unable to fetch weather.', {

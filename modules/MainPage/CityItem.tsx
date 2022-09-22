@@ -1,18 +1,17 @@
-import { FavoriteCity } from '../../types';
-import React, { FC, useEffect } from 'react';
-import { fetchWeather } from '../../utils/fetchWeather';
-import { codeToWeatherTitle } from '../../utils/weatherCodes';
-import { useRouter } from 'next/router';
-import WeatherIcon from '../WeatherIcon';
-import { usePreferencesContext } from '../../context/preferencesContext';
+import React, { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { FavoriteCity } from '../../types';
+import { fetchWeather, codeToWeatherTitle } from '../../utils';
+import { useRouter } from 'next/router';
+import WeatherIcon from '../../components/WeatherIcon';
+import { usePreferencesContext } from '../../context/preferencesContext';
 import { useErrorContext } from '../../context/errorContext';
 
 interface PropTypes {
   city: FavoriteCity;
 }
 
-const CityItem = ({ city }: PropTypes) => {
+export const CityItem = ({ city }: PropTypes) => {
   const preferencesCtx = usePreferencesContext();
   const errCtx = useErrorContext();
   const { isLoading, error, data } = useQuery(
@@ -68,5 +67,3 @@ const CityItem = ({ city }: PropTypes) => {
     </div>
   );
 };
-
-export default CityItem;

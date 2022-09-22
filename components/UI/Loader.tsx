@@ -1,7 +1,7 @@
-import Lottie, { LottieRefCurrentProps } from 'lottie-react';
-import loadCloud from '../icons/loadCloud.json';
-import { useRef, useEffect } from 'react';
 import * as React from 'react';
+import { useRef, useEffect } from 'react';
+import Lottie, { LottieRefCurrentProps } from 'lottie-react';
+import loadCloud from '../../assets/loadCloud.json';
 
 const Loader = () => {
   const lottieRef = useRef(null) as React.MutableRefObject<LottieRefCurrentProps | null>;

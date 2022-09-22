@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import type { AppProps } from 'next/app';
+import Head from 'next/head';
+import { Toaster } from 'react-hot-toast';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import '../styles/globals.css';
-import SearchBar from '../components/SearchBar';
+import SearchBar from '../components/UI/SearchBar';
 import PreferencesContextProvider from '../context/preferencesContext';
 import FavoritesContextProvider from '../context/favoritesContext';
-import Head from 'next/head';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Toaster } from 'react-hot-toast';
 import ErrorContextProvider from '../context/errorContext';
 
 const queryClient = new QueryClient({

@@ -2,7 +2,7 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 import DailyChart from './DailyChart';
 import DailyItem from './DailyItem';
 
-const DailyForecast = ({ weather1d }: any) => {
+export const DailyForecast = ({ weather1d }: any) => {
   return (
     <div className="bg-white/50 backdrop-blur-lg rounded-lg p-4 mt-4">
       <div className="text-slate-700 font-medium select-none">Daily forecast</div>
@@ -19,4 +19,3 @@ const DailyForecast = ({ weather1d }: any) => {
     </div>
   );
 };
-export default DailyForecast;

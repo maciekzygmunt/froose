@@ -1,15 +1,15 @@
-import Sun from '../icons/animated/day.svg';
-import Moon from '../icons/animated/night.svg';
-import SunClouds from '../icons/animated/cloudy-day-2.svg';
-import MoonClouds from '../icons/animated/cloudy-night-2.svg';
-import Clouds from '../icons/animated/cloudy.svg';
-import LightRain from '../icons/animated/rainy-4.svg';
-import Rain from '../icons/animated/rainy-5.svg';
-import HeavyRain from '../icons/animated/rainy-6.svg';
-import LightSnow from '../icons/animated/snowy-4.svg';
-import Snow from '../icons/animated/snowy-5.svg';
-import HeavySnow from '../icons/animated/snowy-6.svg';
-import Thunder from '../icons/animated/thunder.svg';
+import Sun from '../assets/animated-icons/day.svg';
+import Moon from '../assets/animated-icons/night.svg';
+import SunClouds from '../assets/animated-icons/cloudy-day-2.svg';
+import MoonClouds from '../assets/animated-icons/cloudy-night-2.svg';
+import Clouds from '../assets/animated-icons/cloudy.svg';
+import LightRain from '../assets/animated-icons/rainy-4.svg';
+import Rain from '../assets/animated-icons/rainy-5.svg';
+import HeavyRain from '../assets/animated-icons/rainy-6.svg';
+import LightSnow from '../assets/animated-icons/snowy-4.svg';
+import Snow from '../assets/animated-icons/snowy-5.svg';
+import HeavySnow from '../assets/animated-icons/snowy-6.svg';
+import Thunder from '../assets/animated-icons/thunder.svg';
 import React from 'react';
 interface WeatherIconProps {
   code: number;

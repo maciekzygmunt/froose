@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router';
-import { fetchWeather } from '../utils/fetchWeather';
 import { FavoriteCity } from '../types';
 import { useFavoritesContext } from '../context/favoritesContext';
 

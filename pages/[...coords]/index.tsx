@@ -1,19 +1,16 @@
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
-import DailyForecast from '../../components/Daily/DailyForecast';
-import Details from '../../components/Details/Details';
-import Dropdown from '../../components/Dropdown';
-import HourlyForecast from '../../components/Hourly/HourlyForecast';
-import { fetchWeather } from '../../utils/fetchWeather';
-import { codeToWeatherTitle } from '../../utils/weatherCodes';
-import FavoriteStar from '../../components/FavoriteStar';
-import { coordsToName, nameToCoords } from '../../utils/coords';
-import { usePreferencesContext } from '../../context/preferencesContext';
 import Head from 'next/head';
 import { useQuery } from '@tanstack/react-query';
-import Loader from '../../components/Loader';
-import ErrorMessage from '../../components/ErrorMessage';
+import { DailyForecast } from '../../modules/Daily';
+import { Details } from '../../modules/Details';
+import Dropdown from '../../components/Dropdown';
+import { HourlyForecast } from '../../modules/Hourly';
+import { fetchWeather, codeToWeatherTitle } from '../../utils';
+import FavoriteStar from '../../components/FavoriteStar';
+import { usePreferencesContext } from '../../context/preferencesContext';
+import Loader from '../../components/UI/Loader';
+import ErrorMessage from '../../components/UI/ErrorMessage';
 
 const Weather: NextPage = () => {
   const router = useRouter();
