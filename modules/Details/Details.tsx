@@ -1,7 +1,7 @@
 import Arrow from '../../assets/arrow.svg';
 import { usePreferencesContext } from '../../context/preferencesContext';
 
-export const Details = ({ details }: any) => {
+export const Details = ({ details, backupPressure }: any) => {
   const preferencesCtx = usePreferencesContext();
   const isMetric = preferencesCtx?.preferences.units === 'metric' ? true : false;
   const rotateDeg = Math.round(details.values.windDirection);
@@ -23,7 +23,10 @@ export const Details = ({ details }: any) => {
         <div>
           <div className="text-sm text-slate-700">Pressure</div>
           <div className="text-slate-900 ">
-            {Math.round(details.values.pressureSurfaceLevel)} {isMetric ? 'hPa' : 'inHg'}
+            {details.values.pressureSurfaceLevel
+              ? Math.round(details.values.pressureSurfaceLevel)
+              : Math.round(backupPressure)}
+            {isMetric ? ' hPa' : ' inHg'}
           </div>
         </div>
         <div>

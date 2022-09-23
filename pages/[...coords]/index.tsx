@@ -81,7 +81,10 @@ const Weather: NextPage = () => {
         </div>
         <HourlyForecast weather1h={data?.hourlyWeather} />
         <DailyForecast weather1d={data?.dailyWeather} />
-        <Details details={data?.hourlyWeather[0]} />
+        <Details
+          details={data?.hourlyWeather[0]}
+          backupPressure={data?.hourlyWeather[1].values.pressureSurfaceLevel}
+        />
       </motion.div>
     </>
   );
