@@ -1,6 +1,6 @@
-import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
 import { useIsFetching } from '@tanstack/react-query';
+import { motion } from 'framer-motion';
 import Logo from '../../components/UI/Logo';
 import { CityItem } from './';
 import { useFavoritesContext } from '../../context/favoritesContext';
@@ -46,19 +46,32 @@ const MainPage = () => {
 
   return (
     <div className="flex flex-col items-center m-4 md:max-w-3xl md:mx-auto gap-y-2">
-      <Logo />
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }}>
+        <Logo />
+      </motion.div>
       {isFetching ? (
         <div className="m-20">
           <Loader />
         </div>
-      ) : !errCtx?.error ? (
+      ) : !errCtx?.error && cities?.length! > 0 ? (
         <>
-          <div className="self-start font-semibold text-3xl ml-1 text-white drop-shadow-2xl">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="self-start font-semibold text-3xl ml-1 text-white drop-shadow-2xl"
+          >
             {favCtx?.favorites.length !== 0 ? 'Favorites' : 'Around the world'}
-          </div>
+          </motion.div>
           <div className="flex flex-col gap-y-4 w-full">
-            {cities?.map((city) => (
-              <CityItem key={city.city} city={city} />
+            {cities?.map((city, i) => (
+              <motion.div
+                key={city.city}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3, delay: i * 0.1 }}
+              >
+                <CityItem key={city.city} city={city} />
+              </motion.div>
             ))}
           </div>
         </>

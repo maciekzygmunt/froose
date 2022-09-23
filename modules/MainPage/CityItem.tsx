@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import WeatherIcon from '../../components/WeatherIcon';
 import { usePreferencesContext } from '../../context/preferencesContext';
 import { useErrorContext } from '../../context/errorContext';
+import { motion } from 'framer-motion';
 
 interface PropTypes {
   city: FavoriteCity;
@@ -48,7 +49,7 @@ export const CityItem = ({ city }: PropTypes) => {
 
   return (
     <div
-      className="flex justify-between items-center bg-white/50 backdrop-blur-lg rounded-lg p-6 w-full cursor-pointer hover:scale-[101%] transition-all duration-200 overflow-hidden"
+      className="flex justify-between hover:scale-[101%] transition-all duration-200 items-center bg-white/50 backdrop-blur-lg rounded-lg p-6 w-full cursor-pointer overflow-hidden"
       onClick={clickHandler}
     >
       <div className="flex flex-col items-start">

@@ -146,6 +146,7 @@ Project Link: [https://github.com/maciekzygmunt/froose](https://github.com/macie
 
 Useful resources and libraries that I have used in my project.
 
+- [Icons](https://www.amcharts.com/free-animated-svg-weather-icons/)
 - [Chart.js](https://www.chartjs.org/)
 - [React Easy Marquee](https://github.com/jagnani73/react-easy-marquee)
 - [React Hot Toast](https://react-hot-toast.com/)
