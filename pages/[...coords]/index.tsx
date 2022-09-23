@@ -2,6 +2,7 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { useQuery } from '@tanstack/react-query';
+import { motion } from 'framer-motion';
 import { DailyForecast } from '../../modules/Daily';
 import { Details } from '../../modules/Details';
 import Dropdown from '../../components/Dropdown';
@@ -52,7 +53,11 @@ const Weather: NextPage = () => {
       <Head>
         <title>{data.name} | Froose</title>
       </Head>
-      <div className="m-4 md:max-w-3xl md:mx-auto">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="m-4 md:max-w-3xl md:mx-auto"
+      >
         <div className="h-[80vh]">
           <div className="flex justify-between items-start">
             <div className="flex flex-col">
@@ -77,7 +82,7 @@ const Weather: NextPage = () => {
         <HourlyForecast weather1h={data?.hourlyWeather} />
         <DailyForecast weather1d={data?.dailyWeather} />
         <Details details={data?.hourlyWeather[0]} />
-      </div>
+      </motion.div>
     </>
   );
 };
