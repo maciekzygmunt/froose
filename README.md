@@ -1,6 +1,6 @@
 <div align="center">
 
-  <img src="icons/Froose Logo.png" alt="logo" width="400" height="auto" />
+  <img src="assets/Froose Logo.png" alt="logo" width="400" height="auto" />
   <h1>Froose</h1>
   
   <p>
@@ -56,7 +56,7 @@
 ### :camera: Screenshots
 
 <div align="center"> 
-  <img src="icons/render.png" alt="screenshot" />
+  <img src="assets/render.png" alt="screenshot" />
 </div>
 
 <!-- TechStack -->
