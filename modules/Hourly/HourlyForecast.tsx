@@ -7,7 +7,7 @@ export const HourlyForecast = ({ weather1h }: any) => {
   }
 
   return (
-    <div className="bg-white/50 backdrop-blur-lg rounded-lg p-4">
+    <div className="bg-white/50 backdrop-blur-lg shadow-sm rounded-lg p-4">
       <div className="text-slate-700 font-medium select-none">Hourly forecast</div>
       <ScrollContainer
         className="flex cursor-grab"

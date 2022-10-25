@@ -7,7 +7,7 @@ export const Details = ({ details, backupPressure }: any) => {
   const rotateDeg = Math.round(details.values.windDirection);
 
   return (
-    <div className="bg-white/50 backdrop-blur-lg rounded-lg p-4 mt-4 select-none">
+    <div className="bg-white/50 backdrop-blur-lg rounded-lg p-4 mt-4 shadow-sm select-none">
       <div className="text-slate-700 font-medium select-none">Details</div>
       <div className="grid grid-cols-1 xssmall:grid-cols-2  supasmall:grid-cols-3 small:grid-cols-4 sma:grid-cols-5 gap-y-2 mt-2 text-center">
         <div>

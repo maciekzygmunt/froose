@@ -4,7 +4,7 @@ import DailyItem from './DailyItem';
 
 export const DailyForecast = ({ weather1d }: any) => {
   return (
-    <div className="bg-white/50 backdrop-blur-lg rounded-lg p-4 mt-4">
+    <div className="bg-white/50 backdrop-blur-lg shadow-sm rounded-lg p-4 mt-4">
       <div className="text-slate-700 font-medium select-none">Daily forecast</div>
       <ScrollContainer draggingClassName="cursor-grabbing" nativeMobileScroll={true}>
         <div className="flex cursor-grab">

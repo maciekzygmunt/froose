@@ -15,7 +15,7 @@ const HourlyItem = ({ hourlyObject }: any) => {
     <div className="m-2 select-none text-slate-900 flex flex-col items-center gap-y-2 first:ml-0 min-w-[40px]">
       <div>{hour}</div>
       <div className="w-7 h-7">
-        <WeatherIcon code={hourlyObject.values.weatherCode} time={date.getHours()} />
+        <WeatherIcon code={hourlyObject.values.weatherCode} time={date.getHours()} big={false} />
       </div>
       <div className="relative">
         {Math.round(hourlyObject.values.temperature)}

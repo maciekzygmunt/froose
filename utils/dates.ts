@@ -1,29 +1,6 @@
 export const numberToWeekDay = (number: number) => {
-  let day = '';
-  switch (number) {
-    case 1:
-      day = 'Mon';
-      break;
-    case 2:
-      day = 'Tue';
-      break;
-    case 3:
-      day = 'Wed';
-      break;
-    case 4:
-      day = 'Thu';
-      break;
-    case 5:
-      day = 'Fri';
-      break;
-    case 6:
-      day = 'Sat';
-      break;
-    case 0:
-      day = 'Sun';
-      break;
-  }
-  return day;
+  const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  return days[number];
 };
 
 export const numberToMonth = (number: number) => {
@@ -62,4 +39,30 @@ export const formatHour = (date: Date) => {
   minutes = minutes < 10 ? '0' + minutes : minutes;
   let strTime = hours + '' + ampm;
   return strTime;
+};
+
+export const getTodayDate = () => {
+  const today = new Date();
+
+  const monthNames = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+
+  const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+  const day = dayNames[today.getDay()];
+  const month = monthNames[today.getMonth()];
+
+  return `${day}, ${today.getDate()} ${month}`;
 };

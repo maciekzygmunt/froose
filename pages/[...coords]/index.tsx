@@ -7,16 +7,18 @@ import { DailyForecast } from '../../modules/Daily';
 import { Details } from '../../modules/Details';
 import Dropdown from '../../components/Dropdown';
 import { HourlyForecast } from '../../modules/Hourly';
-import { fetchWeather, codeToWeatherTitle } from '../../utils';
+import { fetchWeather, codeToWeatherTitle, getTodayDate } from '../../utils';
 import FavoriteStar from '../../components/FavoriteStar';
 import { usePreferencesContext } from '../../context/preferencesContext';
 import Loader from '../../components/UI/Loader';
 import ErrorMessage from '../../components/UI/ErrorMessage';
+import WeatherIcon from '../../components/WeatherIcon';
 
 const Weather: NextPage = () => {
   const router = useRouter();
   const preferencesCtx = usePreferencesContext();
   const coords = router.query.coords || 'wait';
+  const date = new Date();
 
   const { isLoading, data, isError } = useQuery(
     [{ latitude: +coords![0], longitude: +coords![1], units: preferencesCtx?.preferences.units }],
@@ -58,24 +60,31 @@ const Weather: NextPage = () => {
         animate={{ opacity: 1 }}
         className="m-4 md:max-w-3xl md:mx-auto"
       >
-        <div className="h-[80vh]">
-          <div className="flex justify-between items-start">
-            <div className="flex flex-col">
-              <div className="text-slate-50 text-lg font-400">{data.name}</div>
-              <div className="text-white/90 text-2xl">
-                {codeToWeatherTitle(data?.hourlyWeather[0].values.weatherCode)}
-              </div>
-              <div
-                className="text-9xl text-transparent
-      bg-gradient-to-b from-white to-white/60 bg-clip-text font-medium relative"
-              >
-                {Math.round(data?.hourlyWeather[0]?.values?.temperature)}
-                <span className="text-3xl font-medium absolute top-1 text-white/90">°</span>
-              </div>
-            </div>
+        <div className="mb-8">
+          <div className="flex justify-between items-start drop-shadow-md">
+            <div className="text-4xl text-white font-medium truncate">{data.name}</div>
             <div className="flex flex-col items-center">
               <Dropdown />
               <FavoriteStar city={data.name} />
+            </div>
+          </div>
+          <div className="flex flex-col items-center">
+            <div className="w-72 mb-12 drop-shadow-md">
+              <WeatherIcon
+                code={data?.hourlyWeather[0].values.weatherCode}
+                time={date.getHours()}
+                big={true}
+              />
+            </div>
+            <div className="flex flex-col items-center drop-shadow-md">
+              <div className="relative text-[10rem] leading-none text-white font-medium">
+                {Math.round(data?.hourlyWeather[0]?.values?.temperature)}
+                <span className="absolute text-4xl top-2">°</span>
+              </div>
+              <div className="text-white text-3xl font-medium">
+                {codeToWeatherTitle(data?.hourlyWeather[0].values.weatherCode)}
+              </div>
+              <p className="text-slate-100 font-normal text-lg">{getTodayDate()}</p>
             </div>
           </div>
         </div>

@@ -1,5 +1,7 @@
+import React from 'react';
 import Sun from '../assets/animated-icons/day.svg';
 import Moon from '../assets/animated-icons/night.svg';
+import MoonBig from '../assets/animated-icons/nightBig.svg';
 import SunClouds from '../assets/animated-icons/cloudy-day-2.svg';
 import MoonClouds from '../assets/animated-icons/cloudy-night-2.svg';
 import Clouds from '../assets/animated-icons/cloudy.svg';
@@ -10,19 +12,21 @@ import LightSnow from '../assets/animated-icons/snowy-4.svg';
 import Snow from '../assets/animated-icons/snowy-5.svg';
 import HeavySnow from '../assets/animated-icons/snowy-6.svg';
 import Thunder from '../assets/animated-icons/thunder.svg';
-import React from 'react';
 interface WeatherIconProps {
   code: number;
   time: number;
+  big: boolean;
 }
 
-const WeatherIcon = ({ code, time }: WeatherIconProps) => {
+const WeatherIcon = ({ code, time, big }: WeatherIconProps) => {
   let icon = <></>;
   if (code === 1000) {
     if (time < 20 && time > 5) {
       icon = <Sun className="overflow-visible" />;
-    } else {
-      icon = <Moon className=" overflow-visible" />;
+    } else if (big == false) {
+      icon = <Moon className="overflow-visible" />;
+    } else if (big == true) {
+      icon = <MoonBig className="overflow-visible w-44" />;
     }
   } else if (code === 1100 || code === 1101) {
     if (time < 20 && time > 5) {
