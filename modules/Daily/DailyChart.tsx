@@ -36,7 +36,11 @@ export const DailyChart = ({ weather1d }: any) => {
   const canva = useRef<ChartJSOrUndefined<'line'>>();
 
   useEffect(() => {
-    canva?.current?.resize(1110, 150);
+    if (labels.length == 14) {
+      canva?.current?.resize(1035, 150);
+    } else {
+      canva?.current?.resize(1110, 150);
+    }
   }, []);
 
   const options = {
