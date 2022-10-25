@@ -68,7 +68,7 @@ const Weather: NextPage = () => {
               <FavoriteStar city={data.name} />
             </div>
           </div>
-          <div className="flex flex-col items-center relative -top-8">
+          <div className="flex flex-col items-center relative -top-8  -z-10">
             <div className="w-72 mb-12 drop-shadow-md">
               <WeatherIcon
                 code={data?.hourlyWeather[0].values.weatherCode}
