@@ -15,10 +15,10 @@ import Thunder from '../assets/animated-icons/thunder.svg';
 interface WeatherIconProps {
   code: number;
   time: number;
-  big: boolean;
+  big?: boolean;
 }
 
-const WeatherIcon = ({ code, time, big }: WeatherIconProps) => {
+const WeatherIcon = ({ code, time, big = false }: WeatherIconProps) => {
   let icon = <></>;
   if (code === 1000) {
     if (time < 20 && time > 5) {
