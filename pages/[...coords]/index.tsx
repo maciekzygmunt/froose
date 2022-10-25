@@ -60,7 +60,7 @@ const Weather: NextPage = () => {
         animate={{ opacity: 1 }}
         className="m-4 md:max-w-3xl md:mx-auto"
       >
-        <div className="mb-8">
+        <div className="mb-6">
           <div className="flex justify-between items-start drop-shadow-md">
             <div className="text-4xl text-white font-medium truncate">{data.name}</div>
             <div className="flex flex-col items-center">
@@ -68,7 +68,7 @@ const Weather: NextPage = () => {
               <FavoriteStar city={data.name} />
             </div>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center relative -top-8">
             <div className="w-72 mb-12 drop-shadow-md">
               <WeatherIcon
                 code={data?.hourlyWeather[0].values.weatherCode}
