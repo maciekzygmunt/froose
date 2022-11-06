@@ -70,11 +70,8 @@ const Weather: NextPage = () => {
           </div>
           <div className="flex flex-col items-center relative -top-8  -z-10">
             <div className="w-72 mb-12 drop-shadow-md">
-              <WeatherIcon
-                code={data?.hourlyWeather[0].values.weatherCode}
-                time={date.getHours()}
-                big={true}
-              />
+              {/* data?.hourlyWeather[0].values.weatherCode */}
+              <WeatherIcon code={8000} time={date.getHours()} big={true} />
             </div>
             <div className="flex flex-col items-center drop-shadow-md">
               <div className="relative text-[10rem] leading-none text-white font-medium">
