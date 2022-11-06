@@ -93,7 +93,6 @@ const WeatherIcon = ({ code, time, big = false }: WeatherIconProps) => {
       <HeavySnowSmall className="overflow-visible" />
     );
   } else if (code === 8000) {
-    //TODO: fix thunder
     icon = big ? (
       <Thunder className="overflow-visible" />
     ) : (

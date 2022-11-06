@@ -54,6 +54,11 @@ const Weather: NextPage = () => {
     <>
       <Head>
         <title>{data.name} | Froose</title>
+        <meta property="og:title" content={`Froose - ${data.name}`} />
+        <meta
+          name="og:description"
+          content={`Use Froose to check the weather for next 14 days in ${data.name}, make a list of your favorites places and never be surprised by the weather.`}
+        />
       </Head>
       <motion.div
         initial={{ opacity: 0 }}
@@ -70,8 +75,11 @@ const Weather: NextPage = () => {
           </div>
           <div className="flex flex-col items-center relative -top-8  -z-10">
             <div className="w-72 mb-12 drop-shadow-md">
-              {/* data?.hourlyWeather[0].values.weatherCode */}
-              <WeatherIcon code={8000} time={date.getHours()} big={true} />
+              <WeatherIcon
+                code={data?.hourlyWeather[0].values.weatherCode}
+                time={date.getHours()}
+                big={true}
+              />
             </div>
             <div className="flex flex-col items-center drop-shadow-md">
               <div className="relative text-[10rem] leading-none text-white font-medium">

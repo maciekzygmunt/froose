@@ -23,6 +23,34 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Head>
         <title>Froose</title>
         <link rel="shortcut icon" href="/favicon.ico" />
+        <meta name="title" content="Froose - Weather app" />
+        <meta
+          name="description"
+          content="Use Froose to check the weather for next 14 days, make a list of your favorites places and never be surprised by the weather."
+        />
+        <meta name="keywords" content="weather, sun, rain, snow, check weather" />
+        <meta name="language" content="English" />
+        <meta name="author" content="Maciej Zygmunt" />
+
+        {/* FACEBOOK */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://froose.vercel.app/" />
+        <meta property="og:title" content="Froose - Weather app" />
+        <meta
+          property="og:description"
+          content="Use Froose to check the weather for next 14 days, make a list of your favorites places and never be surprised by the weather."
+        />
+        <meta property="og:image" content="/froose_logo_og.png" />
+
+        {/* <!-- Twitter --> */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://froose.vercel.app/" />
+        <meta property="twitter:title" content="Froose - Weather app" />
+        <meta
+          property="twitter:description"
+          content="Use Froose to check the weather for next 14 days, make a list of your favorites places and never be surprised by the weather."
+        />
+        <meta property="twitter:image" content="/froose_logo_og.png" />
       </Head>
       <QueryClientProvider client={queryClient}>
         <FavoritesContextProvider>
